@@ -1,3 +1,7 @@
+*.a
+*.o
+*.ase
+*.png
 bin/*
 build/*
 tags
