@@ -5,15 +5,15 @@ typedef struct s_data_img
 {
 	void    *img;
 
-	char	*filename; // for xml images
+	char	*filename;	// for xpm images
 	char    *addr;
                                                            
-	int     bpp; // bits per pixel
+	int     bpp;		// bits per pixel
 	int     line_len;
 	int     endian;
 
-	int		length;
-	int		heigth;
+	int		width;		// to set manually if not xpm
+	int		height;		// to set manually if not xpm
 } t_data_img;
 
 /*
