@@ -12,7 +12,7 @@
 # endif
 
 # ifndef WINDOW_HEIGTH
-#  define WINDOW_HEIGTH 1080
+#  define WINDOW_HEIGTH 1024
 # endif
 
 # ifndef LOCAL_DATA_STRUCT
