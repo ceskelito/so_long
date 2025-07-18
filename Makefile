@@ -1,28 +1,40 @@
 NAME = bin/so_long
 
-SRCS_NAMES = main.c
-OBJS = $(addprefix build/, $(SRCS_NAMES:%.c=%.o))
-SRCS = $(addprefix sources/, $(SRCS_NAMES))
-
 CC		= gcc
 CFLAGS	= -g
 RM		= rm -f
+MKDIR	= mkdir -p
 
-LIBRARIES	= minilibx-linux libraries/datalib libraries/colors
+BUILD_DIR	= build
+SRCS_DIR	= sources
+BIN_DIR		= bin
+
+SRCS_NAMES = main.c
+OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
+SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
+
+LIBRARIES	= minilibx-linux libraries/datalib libraries/colors LIBFT_EXTENSIBLE 
 
 INC_PATHS = $(addprefix -I,$(LIBRARIES))
 LIB_PATHS = $(addprefix -L,$(LIBRARIES))
-LIB_NAMES = -lmlx -lm -lX11 -lXext -ldatalib
+LIB_NAMES = -ldatalib -lmlx -lft -lm -lX11 -lXext 
 
-vpath %.c=sources/
+vpath %.c sources/
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(I_PATHS) -c $< -o $@
+$(BUILD_DIR)/%.o: $(SRCS_DIR)/%.c | $(BUILD_DIR)
+	@echo "$@"
+	$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) | $(BIN_DIR)
 	$(CC) $^ $(LIB_PATHS) $(LIB_NAMES) -o $@
+
+$(BIN_DIR):
+	$(MKDIR) $(BIN_DIR)
+
+$(BUILD_DIR):
+	$(MKDIR) $(BUILD_DIR)
 
 clean:
 	$(RM) $(OBJS)
