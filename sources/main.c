@@ -6,15 +6,42 @@
 /*   By: rceschel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/18 19:08:05 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:08:50 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.h"
 #include "datalib.h"
-#include "headers/libft.h"
+#include "libft.h"
 #include "mlx.h"
+#include "so_long.h"
 #include <stdlib.h>
+#include <stdbool.h>
+
+/*typedef struct s_assets
+{
+	t_data_img	floor;
+	t_data_img	wall;
+	t_data_img	player;
+	t_data_img	exit;
+	t_data_img	enemy;
+	t_data_img	collectible;
+} t_assests;
+
+char *get_path(char *name);
+{
+	return (ft_strdup(ft_strcat(ft_strcat("assets/", name), ".xpm")));
+}
+
+void set_assets(t_assets *a)
+{
+
+	a.floor.filename = get_path("floor");
+	a.wall.filename = get_path("block");
+	a.player.filename = get_path("player");
+	a.exit.filename = get_path("exit");
+	a.enemy.filename = get_path("enemy");
+}*/
 
 void	draw_backround(t_data *data, t_data_img *tile)
 {
@@ -37,6 +64,8 @@ void	draw_backround(t_data *data, t_data_img *tile)
 
 int	render(void *param)
 {
+	if(param)
+		return (0);
 	return (0);
 }
 
@@ -48,12 +77,36 @@ int	close_window(t_data *data)
 	exit(0);
 }
 
-int	main(void)
+bool check_extension(const char *filename, const char *ext)
+{
+	if(ft_strcmp(filename + (ft_strlen(filename) - ft_strlen(ext)) , ext) != 0)
+		return (false);
+	return (true);
+}
+
+int	main(int ac, char **av)
 {
 	t_data		data;
 	t_data_img	tile;
+	t_map		map;
 
-	tile.filename = ft_strdup("./assets/block.xpm");
+	if (ac != 2 || ! av[1])
+	{
+		ft_printf("Arg Error: Invalid number of arguments, please give only the map's file path.\n");
+		return (ARG_ERROR);
+	}
+	if(!check_extension((const char *)av[1], (const char*)".ber"))
+	{
+		ft_printf("Arg Error: Invalid file extension for the map's file, need to be '.ber'\n");
+		return (ARG_ERROR);
+	}
+	// check for file extension is .ber
+	// check_ext(av[1]);
+	
+	map = get_map(av[1]);
+	if(!map.string)
+		return(PARSE_ERROR);
+
 	data = data_init(NULL, WINDOW_LENGTH, WINDOW_HEIGTH, "so_long");
 	tile.img = mlx_xpm_file_to_image(data.mlx, tile.filename, &(tile.width),
 			&(tile.height));

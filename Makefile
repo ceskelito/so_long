@@ -1,7 +1,7 @@
 NAME = bin/so_long
 
 CC		= gcc
-CFLAGS	= -g
+CFLAGS	= -Wall -Wextra -Werror -g
 RM		= rm -f
 MKDIR	= mkdir -p
 
@@ -9,14 +9,16 @@ BUILD_DIR	= build
 SRCS_DIR	= sources
 BIN_DIR		= bin
 
-SRCS_NAMES = main.c
+SRCS_NAMES = main.c map_parser.c
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 
-LIBRARIES	= minilibx-linux libraries/datalib libraries/colors LIBFT_EXTENSIBLE 
+INC_PATHS = -Iminilibx-linux -Ilibraries/datalib -Ilibraries/colors \
+			-Ilibft/headers -Iheaders
 
-INC_PATHS = $(addprefix -I,$(LIBRARIES))
-LIB_PATHS = $(addprefix -L,$(LIBRARIES))
+LIB_PATHS = -Lminilibx-linux -Llibraries/datalib -Llibraries/colors \
+			-Llibft
+
 LIB_NAMES = -ldatalib -lmlx -lft -lm -lX11 -lXext 
 
 vpath %.c sources/
@@ -28,7 +30,7 @@ $(BUILD_DIR)/%.o: $(SRCS_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
 
 $(NAME): $(OBJS) | $(BIN_DIR)
-	$(CC) $^ $(LIB_PATHS) $(LIB_NAMES) -o $@
+	$(CC) $^ $(LIB_PATHS) $(LIB_NAMES) -no-pie -o $@
 
 $(BIN_DIR):
 	$(MKDIR) $(BIN_DIR)
