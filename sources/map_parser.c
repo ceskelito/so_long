@@ -32,7 +32,7 @@ static int	check_measurements(t_map *map)
 
 	fd = open(map->filename, O_RDONLY);
 	if(fd < 0)
-		return (1);
+		return (PARSE_ERROR);
 	row = get_next_line(fd);
 	map->width = ft_strlen(row);
 	map->height = 0;
@@ -45,7 +45,7 @@ static int	check_measurements(t_map *map)
 		{
 			close(fd);
 			ft_printf("Parse Error: Not every row has the same length\n");
-			return (1);
+			return (PARSE_ERROR);
 		}
 	}
 	close(fd);
