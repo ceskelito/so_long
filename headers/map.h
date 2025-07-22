@@ -1,34 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 12:13:19 by rceschel          #+#    #+#             */
+/*   Updated: 2025/07/22 15:41:20 by rceschel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAP_H
-# define MAP_h
+# define MAP_H
 
-# define ASSETS_SIZE 128
+# include "assets.h"
 
-# define T_FLOOR		'0'
-# define T_WALL			'1'
-# define T_EXIT			'E'
-# define T_ENEMY		'X'
-# define T_COLLECTIBLE	'C'
-# define T_PLAYER		'P'
+# define C_FLOOR		'0'
+# define C_WALL			'1'
+# define C_EXIT			'E'
+# define C_ENEMY		'X'
+# define C_COLLECTIBLE	'C'
+# define C_PLAYER		'P'
+
+/*
+# define T_FLOOR		0
+# define T_WALL			1
+# define T_EXIT			2
+# define T_ENEMY		3
+# define T_COLLECTIBLE	4
+# define T_PLAYER		5
 
 
-typedef struct s_tile
+typedef enum e_tile
 {
-	char	*filename;
-	void	*img;
-	int		width;
-	int		height;
-	int		type;
-	int		x;
-	int		y;
+	T_FLOOR,
+	T_WALL,
+	T_EXIT,
+	T_ENEMY,
+	T_COLLECTIBLE,
+	T_PLAYER,
 } t_tile;
+*/
+
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}	t_player;
+
 
 typedef struct s_map
 {
-	char	*filename;
-	char	**string;
-	int		width;
-	int		height;
-} t_map;
+	char		*filename;
+	void		*asset[ASSETS_COUNT];
+	char		**c_grid;
+	t_tile		**grid; // Defined in ASSETS_H
+	t_player	player;
+	int			tile_size;
+	int			width;
+	int			height;
+}	t_map;
 
 t_map	get_map(char *filename);
 

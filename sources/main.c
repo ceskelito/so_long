@@ -6,7 +6,7 @@
 /*   By: rceschel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/21 17:53:03 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/22 16:02:25 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "libft.h"
 #include "mlx.h"
 #include "so_long.h"
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 /*typedef struct s_assets
 {
@@ -26,30 +26,28 @@
 	t_data_img	exit;
 	t_data_img	enemy;
 	t_data_img	collectible;
-} t_assests;
+}			t_assests;
 
-char *get_path(char *name);
+char		*get_path(char *name);
 {
 	return (ft_strdup(ft_strcat(ft_strcat("assets/", name), ".xpm")));
 }
 
-void set_assets(t_assets *a)
+void	set_assets(t_assets *a)
 {
-
 	a.floor.filename = get_path("floor");
 	a.wall.filename = get_path("block");
 	a.player.filename = get_path("player");
 	a.exit.filename = get_path("exit");
 	a.enemy.filename = get_path("enemy");
 }*/
-
 void	print_and_exit(char *msg, int exit_code)
 {
 	ft_printf("%s", msg);
 	exit(exit_code);
 }
 
-void	draw_backround(t_data *data, t_data_img *tile, t_map *map)
+void	draw_backround(t_data *data, t_map *map)
 {
 	int	i;
 	int	j;
@@ -60,17 +58,18 @@ void	draw_backround(t_data *data, t_data_img *tile, t_map *map)
 	{
 		while (j <= map->height)
 		{
-			mlx_put_image_to_window(data->mlx, data->win, tile->img, i * ASSETS_SIZE, j * ASSETS_SIZE);
-			j ++;
+			mlx_put_image_to_window(data->mlx, data->win, map->asset[T_FLOOR], i
+				* ASSETS_SIZE, j * ASSETS_SIZE);
+			j++;
 		}
-		i ++;
+		i++;
 		j = 0;
 	}
 }
 
 int	render(void *param)
 {
-	if(param)
+	if (param)
 		return (0);
 	return (0);
 }
@@ -83,40 +82,44 @@ int	close_window(t_data *data)
 	exit(0);
 }
 
-bool check_extension(const char *filename, const char *ext)
+bool	check_extension(const char *filename, const char *ext)
 {
-	if(ft_strcmp(filename + (ft_strlen(filename) - ft_strlen(ext)) , ext) != 0)
+	if (ft_strcmp(filename + (ft_strlen(filename) - ft_strlen(ext)), ext) != 0)
 		return (false);
 	return (true);
 }
 
-static void check_args(int ac, char **av)
+static void	check_args(int ac, char **av)
 {
-	if (ac != 2 || ! av[1])
+	if (ac != 2 || !av[1])
 		print_and_exit("Arg Error: Invalid number of arguments, please give only the map's file path.\n", ARG_ERROR);
-	if(!check_extension((const char *)av[1], (const char*)".ber"))
+	if (!check_extension((const char *)av[1], (const char *)".ber"))
 		print_and_exit("Arg Error: Invalid file extension for the map's file, need to be '.ber'\n", ARG_ERROR);
 }
 
 int	main(int ac, char **av)
 {
-	t_data		data;
-	t_data_img	tile;
-	t_map		map;
+	t_data	data;
+	t_map	map;
+	void	*mlx_ptr;
 
 	check_args(ac, av);
 	map = get_map(av[1]);
-	if(!map.string)
-		print_and_exit("Parse Error: Impossible to retrieve map as a string array\n", PARSE_ERROR);
-	data = data_init(NULL, map.width * ASSETS_SIZE, map.height * ASSETS_SIZE, "so_long");
-	ft_printf("data inizializzato\n"); //debug
-	tile.filename = ft_strdup("assets/floor.xpm");
-	tile.img = mlx_xpm_file_to_image(data.mlx, tile.filename, &(tile.width),
-			&(tile.height));
-	if(!tile.img)
-		return(MLX_ERROR);
-	ft_printf("Ottenuto tile\n"); //debug
-	draw_backround(&data, &tile, &map);
+	if (!map.c_grid || !map.grid)
+		print_and_exit("Parse Error: Failed in retrieving the map\n",
+			PARSE_ERROR);
+	mlx_ptr = mlx_init();
+	set_assets(mlx_ptr, map.asset);
+	if (!map.asset)
+	{
+		free(mlx_ptr);
+		print_and_exit("Asset Error: Failed in creating images from assets\n",
+				MLX_ERROR);
+	}
+	data = data_init(mlx_ptr, map.width * ASSETS_SIZE, map.height * ASSETS_SIZE,
+			"so_long");
+	ft_printf("data inizializzato\n"); // debug
+	draw_backround(&data, &map);
 	mlx_loop_hook(data.win, &render, NULL);
 	mlx_hook(data.win, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx);
