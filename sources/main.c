@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 16:02:25 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/22 18:16:57 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,22 @@ void	print_and_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-void	draw_backround(t_data *data, t_map *map)
+void	draw_background(t_data *data, t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i <= map->width)
+	while (i < map->width)
 	{
-		while (j <= map->height)
+		while (j < map->height)
 		{
-			mlx_put_image_to_window(data->mlx, data->win, map->asset[T_FLOOR], i
-				* ASSETS_SIZE, j * ASSETS_SIZE);
+			//if (map->grid[j][i] == T_PLAYER)
+			mlx_put_image_to_window(data->mlx, data->win,
+				map->asset[T_PLAYER], i * ASSETS_SIZE, j * ASSETS_SIZE);
+			mlx_put_image_to_window(data->mlx, data->win,
+				map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
 			j++;
 		}
 		i++;
@@ -89,12 +92,19 @@ bool	check_extension(const char *filename, const char *ext)
 	return (true);
 }
 
-static void	check_args(int ac, char **av)
+static void check_args(int ac, char **av)
 {
 	if (ac != 2 || !av[1])
-		print_and_exit("Arg Error: Invalid number of arguments, please give only the map's file path.\n", ARG_ERROR);
+	{
+		ft_printf("Arg Error: Invalid number of arguments, ");
+		print_and_exit("give only the map's file path.\n", ARG_ERROR);
+	}
 	if (!check_extension((const char *)av[1], (const char *)".ber"))
-		print_and_exit("Arg Error: Invalid file extension for the map's file, need to be '.ber'\n", ARG_ERROR);
+	{
+
+		ft_printf("Arg Error: Invalid file extension for the map's file, ");
+		print_and_exit("need to be '.ber'\n", ARG_ERROR);
+	}
 }
 
 int	main(int ac, char **av)
@@ -108,18 +118,20 @@ int	main(int ac, char **av)
 	if (!map.c_grid || !map.grid)
 		print_and_exit("Parse Error: Failed in retrieving the map\n",
 			PARSE_ERROR);
+	map.tile_size = ASSETS_SIZE;
 	mlx_ptr = mlx_init();
-	set_assets(mlx_ptr, map.asset);
+	if (!set_assets(mlx_ptr, map.asset))
+		print_and_exit("MLX Error: Failed in retrieving the assets\n",
+			MLX_ERROR);
 	if (!map.asset)
 	{
 		free(mlx_ptr);
 		print_and_exit("Asset Error: Failed in creating images from assets\n",
-				MLX_ERROR);
+			MLX_ERROR);
 	}
 	data = data_init(mlx_ptr, map.width * ASSETS_SIZE, map.height * ASSETS_SIZE,
 			"so_long");
-	ft_printf("data inizializzato\n"); // debug
-	draw_backround(&data, &map);
+	draw_background(&data, &map);
 	mlx_loop_hook(data.win, &render, NULL);
 	mlx_hook(data.win, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx);

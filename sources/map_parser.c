@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 15:44:41 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/22 18:11:49 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static char	**extract_map(char *filename, int height)
 }
 
 // Check if the map is a rectangle, set map width/height
+// Width = len(row) - 1; beacuse row has '\n' as last character
 static bool	check_measurements(t_map *map)
 {
 	int		fd;
@@ -48,14 +49,14 @@ static bool	check_measurements(t_map *map)
 	if (fd < 0)
 		return (PARSE_ERROR);
 	row = get_next_line(fd);
-	map->width = ft_strlen(row);
+	map->width = ft_strlen(row) - 1;
 	map->height = 0;
 	while (row)
 	{
 		map->height++;
 		free(row);
 		row = get_next_line(fd);
-		if (row && map->width != ft_strlen(row))
+		if (row && map->width != ft_strlen(row) - 1)
 		{
 			close(fd);
 			ft_printf("Error in Map Format: ");
@@ -74,22 +75,33 @@ static bool	check_measurements(t_map *map)
 	return (true);
 }
 
-static int	**translate_map(char **c_map, int width, int height)
+static void free_map(t_tile **map, int h)
 {
 	int	i;
-	int j;
-	int	**i_map;
 
-	i_map = ft_calloc(width, sizeof(int *));
+	i = 0;
+	while (i < h)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+static t_tile **translate_map(char **c_map, int width, int height)
+{
+	int		i;
+	int		j;
+	t_tile	**i_map;
+
+	i_map = ft_calloc(height, sizeof(t_tile *));
 	i = 0;
 	while (i < height)
 	{
-		i_map[i] = ft_calloc(width, sizeof(int));
+		i_map[i] = ft_calloc(width, sizeof(t_tile));
 		j = 0;
 		while (j < width)
 		{
-			if (!c_map[0][0])
-				return(i_map);
 			if (c_map[i][j] == C_FLOOR)
 				i_map[i][j] = T_FLOOR;
 			else if (c_map[i][j] == C_WALL)
@@ -100,12 +112,15 @@ static int	**translate_map(char **c_map, int width, int height)
 				i_map[i][j] = T_EXIT;
 			else if (c_map[i][j] == C_COLLECTIBLE)
 				i_map[i][j] = T_COLLECTIBLE;
-			else if (c_map[i][j] == C_EXIT)
-				i_map[i][j] = T_EXIT;
 			else if (c_map[i][j] == C_ENEMY)
 				i_map[i][j] = T_ENEMY;
+			else if (c_map[i][j] == '\n')
+				;
 			else
+			{
+				free_map(i_map, i);
 				return (NULL);
+			}
 			j++;
 		}
 		i++;
@@ -123,6 +138,6 @@ t_map	get_map(char *filename)
 	map.c_grid = extract_map(map.filename, map.height);
 	if (!map.c_grid)
 		return (map);
-	map.grid = (t_tile **)translate_map(map.c_grid, map.width, map.height);
+	map.grid = translate_map(map.c_grid, map.width, map.height);
 	return (map);
 }
