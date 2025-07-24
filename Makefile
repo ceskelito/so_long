@@ -25,7 +25,7 @@ LIBRARIES = $(MLX_DATA_PATH)/$(MLX_DATA_LIB) \
 			$(MLX_PATH)/libmlx.a
 
 # Project files
-SRCS_NAMES = main.c map_parser.c assets_checker.c
+SRCS_NAMES = main.c map_parser.c assets_checker.c free_utils.c utils.c
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 

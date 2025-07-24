@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:01:16 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 19:06:04 by rceschel         ###   ########.fr       */
+/*   Created: 2025/07/24 17:16:45 by rceschel          #+#    #+#             */
+/*   Updated: 2025/07/24 17:17:02 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
+#include "stdlib.h"
 
-/* Libraries Inclusion */
-# include "map.h"
-# include "assets.h"
-# include "errors.h"
-# include "utils.h"
-
-/* Common definitions */
-
-#endif
-
+void	print_and_exit(char *msg, int exit_code)
+{
+	ft_printf("%s", msg);
+	exit(exit_code);
+}

@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:13:19 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 15:41:20 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/24 18:35:08 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAP_H
 
 # include "assets.h"
+# include "mlx_data.h"
 
 # define C_FLOOR		'0'
 # define C_WALL			'1'
@@ -51,12 +52,14 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char		*filename;
+	//char		*filename;
+	
+	t_data		*data;
 	void		*asset[ASSETS_COUNT];
 	char		**c_grid;
 	t_tile		**grid; // Defined in ASSETS_H
 	t_player	player;
-	int			tile_size;
+	//int			tile_size;
 	int			width;
 	int			height;
 }	t_map;

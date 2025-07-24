@@ -6,13 +6,14 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 18:11:49 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/24 19:09:04 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "map.h"
 #include "errors.h"
+#include "utils.h"
 #include <fcntl.h>	
 #include <stdbool.h>
 
@@ -21,31 +22,32 @@ static char	**extract_map(char *filename, int height)
 {
 	int		fd;
 	int		i;
-	char	**map;
+	char	**grid;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	map = ft_calloc(height, sizeof(char *));
+	grid = ft_calloc(height + 1, sizeof(char *));
 	i = 0;
 	while (i < height)
 	{
-		map[i] = get_next_line(fd);
-		if (!map[i])
+		grid[i] = get_next_line(fd);
+		if (!grid[i])
 			return (NULL);
 		i++;
 	}
-	return (map);
+	grid[height] = NULL;
+	return (grid);
 }
 
 // Check if the map is a rectangle, set map width/height
 // Width = len(row) - 1; beacuse row has '\n' as last character
-static bool	check_measurements(t_map *map)
+static bool	check_measurements(t_map *map, char *filename)
 {
 	int		fd;
 	char	*row;
 
-	fd = open(map->filename, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (PARSE_ERROR);
 	row = get_next_line(fd);
@@ -94,7 +96,7 @@ static t_tile **translate_map(char **c_map, int width, int height)
 	int		j;
 	t_tile	**i_map;
 
-	i_map = ft_calloc(height, sizeof(t_tile *));
+	i_map = ft_calloc(height + 1, sizeof(t_tile *));
 	i = 0;
 	while (i < height)
 	{
@@ -125,6 +127,7 @@ static t_tile **translate_map(char **c_map, int width, int height)
 		}
 		i++;
 	}
+	i_map[height] = NULL;
 	return (i_map);
 }
 
@@ -132,12 +135,18 @@ t_map	get_map(char *filename)
 {
 	t_map	map;
 
-	map.filename = ft_strdup(filename);
-	if (!check_measurements(&map))
+	if (!check_measurements(&map, filename))
 		exit(MAP_FORMAT_ERROR);
-	map.c_grid = extract_map(map.filename, map.height);
+	map.c_grid = extract_map(filename, map.height);
 	if (!map.c_grid)
-		return (map);
+		print_and_exit("Parse Error: Failed in retrieving the map\n",
+			PARSE_ERROR);
 	map.grid = translate_map(map.c_grid, map.width, map.height);
+	if(!map.grid)
+	{
+		free_grid((void **)map.c_grid);
+		print_and_exit("Parse Error: Failed in translating the map\n",
+			PARSE_ERROR);
+	}
 	return (map);
 }

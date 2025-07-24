@@ -2,6 +2,8 @@
 *.o
 *.ase
 *.png
-bin/*
-build/*
+.continue/
+.vscode/
+bin/
+build/
 tags

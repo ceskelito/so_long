@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:01:16 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 19:06:04 by rceschel         ###   ########.fr       */
+/*   Created: 2025/07/24 16:55:39 by rceschel          #+#    #+#             */
+/*   Updated: 2025/07/24 18:56:48 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef UTILS_H
+# define UTILS_H
 
-/* Libraries Inclusion */
-# include "map.h"
+# include <stdbool.h>
 # include "assets.h"
-# include "errors.h"
-# include "utils.h"
 
-/* Common definitions */
+// Free Memory Function
+bool	free_asset(void *mlx, void *asset[]);
+void	free_grid(void **grid);
+
+void	print_and_exit(char *msg, int exit_code);
 
 #endif
-

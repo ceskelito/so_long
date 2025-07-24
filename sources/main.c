@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 13:00:06 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/24 19:08:54 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void	set_assets(t_assets *a)
 	a.exit.filename = get_path("exit");
 	a.enemy.filename = get_path("enemy");
 }*/
-void	print_and_exit(char *msg, int exit_code)
-{
-	ft_printf("%s", msg);
-	exit(exit_code);
-}
 
 void	draw_background(t_data *data, t_map *map)
 {
@@ -77,11 +72,14 @@ int	render(void *param)
 	return (0);
 }
 
-int	close_window(t_data *data)
+int	close_window(t_map *map)
 {
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	mlx_destroy_window(map->data->mlx, map->data->win);
+	mlx_destroy_display(map->data->mlx);
+	free(map->data->mlx);
+	free_grid((void **)map->c_grid);
+	free_grid((void **)map->grid);
+	free_asset(map->data->mlx, map->asset);
 	exit(0);
 }
 
@@ -115,10 +113,7 @@ int	main(int ac, char **av)
 
 	check_args(ac, av);
 	map = get_map(av[1]);
-	if (!map.c_grid || !map.grid)
-		print_and_exit("Parse Error: Failed in retrieving the map\n",
-			PARSE_ERROR);
-	map.tile_size = ASSETS_SIZE;
+	map.data = &data;
 	mlx_ptr = mlx_init();
 	if (!set_assets(mlx_ptr, map.asset))
 		print_and_exit("MLX Error: Failed in retrieving the assets\n",
@@ -133,8 +128,10 @@ int	main(int ac, char **av)
 			"so_long");
 	draw_background(&data, &map);
 	mlx_loop_hook(data.win, &render, NULL);
-	mlx_hook(data.win, 17, 0, &close_window, &data);
+	mlx_hook(data.win, 17, 0, &close_window, &map);
 	mlx_loop(data.mlx);
-	close_window(&data);
+	close_window(&map);
+	
+	
 	return (0);
 }
