@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 18:16:57 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:36:47 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ void	set_assets(t_assets *a)
 	a.exit.filename = get_path("exit");
 	a.enemy.filename = get_path("enemy");
 }*/
+
+
 void	print_and_exit(char *msg, int exit_code)
 {
 	ft_printf("%s", msg);
 	exit(exit_code);
 }
+
+void	*img_add_transparency(void *start_img, void *start_subst);
 
 void	draw_background(t_data *data, t_map *map)
 {
@@ -58,11 +62,16 @@ void	draw_background(t_data *data, t_map *map)
 	{
 		while (j < map->height)
 		{
-			//if (map->grid[j][i] == T_PLAYER)
-			mlx_put_image_to_window(data->mlx, data->win,
-				map->asset[T_PLAYER], i * ASSETS_SIZE, j * ASSETS_SIZE);
-			mlx_put_image_to_window(data->mlx, data->win,
-				map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
+			if (map->grid[j][i] == T_PLAYER)
+			{
+				void *tmp = img_add_transparency(map->asset[T_PLAYER], map->asset[T_FLOOR]);
+				mlx_put_image_to_window(data->mlx, data->win, tmp, i * ASSETS_SIZE, j * ASSETS_SIZE);
+
+			}
+			else
+				mlx_put_image_to_window(data->mlx, data->win,
+					map->asset[map->grid[j][i]], i * ASSETS_SIZE,
+					j * ASSETS_SIZE);
 			j++;
 		}
 		i++;

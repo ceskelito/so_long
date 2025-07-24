@@ -6,12 +6,14 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:36 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 18:00:46 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:00:25 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSETS_H
 # define ASSETS_H
+
+#include <stdbool.h>
 
 # define ASSETS_SIZE	128
 # define ASSETS_COUNT	6

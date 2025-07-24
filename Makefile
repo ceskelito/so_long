@@ -9,7 +9,7 @@ BUILD_DIR	= build
 SRCS_DIR	= sources
 BIN_DIR		= bin
 
-SRCS_NAMES = main.c map_parser.c assets_checker.c
+SRCS_NAMES = main.c map_parser.c assets_checker.c put_transparency.c 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 
@@ -19,7 +19,7 @@ INC_PATHS = -Iminilibx-linux -Ilibraries/datalib -Ilibraries/colors \
 LIB_PATHS = -Lminilibx-linux -Llibraries/datalib -Llibraries/colors \
 			-LLIBFT_EXTENSIBLE
 
-LIB_NAMES = -ldatalib -lmlx -lft -lm -lX11 -lXext 
+LIB_NAMES = -ldatalib -lcolors -lmlx -lft -lm -lX11 -lXext 
 
 vpath %.c sources/
 

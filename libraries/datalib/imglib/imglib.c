@@ -1,25 +1,25 @@
 #include "datalib.h"
 #include "mlx.h"
 #include <stdlib.h>
-
-
+#include <stdio.h>
 /*	*** TO-DO ***
  
  * Free the structs at exit
  
  */
 
-int img_get_offset(t_data_img *img, int x, int y)
+unsigned int img_get_offset(t_data_img *img, int x, int y)
 {
 	if(!img)
 		exit(MLX_ERROR);
 	return (y * img->line_len + x * (img->bpp / 8));
 }
 
-void img_put_pixel(t_data_img *img, int x, int y, int color)
+void img_put_pixel(t_data_img *img, int x, int y, unsigned int color)
 {
 	char	*dest;
-
+	
+	printf("color: %u\n\n",color);
 	if(!img || !img->addr)
 		exit(MLX_ERROR);
 	dest = img->addr + img_get_offset(img, x, y);
