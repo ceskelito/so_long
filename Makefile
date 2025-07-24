@@ -2,9 +2,7 @@ include libraries/mk.var/Makefile
 
 NAME = bin/so_long
 
-#──────────────────────────────────────────#
-# Compiler and system directives and flags #
-#──────────────────────────────────────────#
+# Compiler and system directives and flags
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g
 RM		= rm -f
@@ -40,9 +38,9 @@ LIB_PATHS = -L$(MLX_PATH) -L$(MLX_DATA_PATH) -L$(COLORS_PATH) \
 
 LIB_NAMES = -lmlx_data -lcolors -lmlx -lft -lm -lX11 -lXext
 
-# === ========== === #
+# ─── ────────── ─── #
 # === MAIN RULES === #
-# === ========== === #
+# ─── ────────── ─── #
 
 all: $(NAME)
 
@@ -55,9 +53,9 @@ $(NAME):  $(OBJS)  $(LIBRARIES) | $(BIN_DIR)
 $(BIN_DIR) $(BUILD_DIR):
 	$(MKDIR) $@
 
-# === ======== ========= =========== === #
+# ─── ────────────────────────────── ─── #
 # === EXTERNAL LIBRARIES COMPILATION === #
-# === ======== ========= =========== === #
+# ─── ────────────────────────────── ─── #
 
 $(MLX_DATA_PATH)/$(MLX_DATA_LIB): $(MLX_DATA_PATH)/$(MLX_DATA_OBJS)
 
@@ -72,9 +70,9 @@ $(COLORS_PATH)/$(COLORS_OBJS): $(COLORS_PATH)/$(COLORS_SRCS)
 $(MLX_PATH)/libmlx.a:
 	$(MAKE) -C $(MLX_PATH)
 
-# === ========= === ================ === #
+# ─── ────────────────────────────── ─── #
 # === CLEANINGS AND RECOMPILITATIONS === #
-# === ========= === ================ === #
+# ─── ────────────────────────────── ─── #
 
 # Project Only
 clean:
