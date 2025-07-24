@@ -1,15 +1,20 @@
-include ../../variables.mk
+include ../mk.var/Makefile
 
-NAME = libdatalib.a
-SRCS = datalib.c imglib/imglib.c
-OBJS = $(SRCS:%.c=%.o)
+CC      = gcc
+AR      = ar rcs
+RM      = rm -f
+CFLAGS  = -Wall -Wextra -Werror
 
-LOC_INC_PATHS = -I../../minilibx-linux -I. -I./imglib
+NAME = $(MLX_DATA_LIB)
+SRCS = $(MLX_DATA_SRCS)
+OBJS = $(MLX_DATA_OBJS)
+
+INCLUDES	= -I../../minilibx-linux
 
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< $(LOC_INC_PATHS) -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	$(AR) $@ $^

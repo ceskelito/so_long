@@ -1,5 +1,10 @@
-#ifndef IMGLIB_H
-# define IMGLIB_H
+#ifndef MLX_DATA_H
+# define MLX_DATA_H
+
+typedef struct s_data {
+	void	*mlx;
+	void	*win;
+} t_data;
 
 typedef struct s_data_img
 {
@@ -35,6 +40,8 @@ typedef struct s_data_mlx
 	int			cur_img;
 } t_data_mlx
 */ //Don't know if useful, in doubt commented it 
+
+t_data	data_init(void *mlx_ptr, int w_l, int w_h, char *w_name);
 
 void	img_set_background(t_data_img *img, int color);
 int		img_get_offset(t_data_img *img, int x, int y);

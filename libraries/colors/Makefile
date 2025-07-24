@@ -1,24 +1,29 @@
-include ../../variables.mk
+include ../mk.var/Makefile
 
-NAME = libcolors.a
+CC      = gcc
+AR      = ar rcs
+RM      = rm -f
+CFLAGS  = -Wall -Wextra -Werror
 
-OBJ = colors.o
+NAME	= $(COLORS_LIB)
+SRCS	= $(COLORS_SRCS) 
+OBJS	= $(COLORS_OBJS)
 
-INC_PATHS = -I$(MLXLIB_DIR)
+INCLUDES	= -I../../minilibx-linux
 
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< $(INC_PATHS) -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJS)
 	$(AR) $@ $^ 
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

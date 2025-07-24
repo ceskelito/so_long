@@ -6,12 +6,12 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/22 18:16:57 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:00:06 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.h"
-#include "datalib.h"
+#include "mlx_data.h"
 #include "libft.h"
 #include "mlx.h"
 #include "so_long.h"
