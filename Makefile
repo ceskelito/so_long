@@ -1,4 +1,6 @@
 include libraries/mk.var/Makefile
+include LIBFT_EXTENSIBLE/mk.var.export/Makefile
+
 
 NAME = bin/so_long
 
@@ -22,7 +24,8 @@ LIBFT_PATH		= LIBFT_EXTENSIBLE
 # External libraries names (for dependencies)
 LIBRARIES = $(MLX_DATA_PATH)/$(MLX_DATA_LIB) \
 			$(COLORS_PATH)/$(COLORS_LIB) \
-			$(MLX_PATH)/libmlx.a
+			$(MLX_PATH)/libmlx.a \
+			$(LIBFT_PATH)/libft.a
 
 # Project files
 SRCS_NAMES = main.c map_parser.c assets_checker.c free_utils.c utils.c
@@ -67,6 +70,11 @@ $(COLORS_PATH)/$(COLORS_LIB): $(COLORS_PATH)/$(COLORS_OBJS)
 $(COLORS_PATH)/$(COLORS_OBJS): $(COLORS_PATH)/$(COLORS_SRCS)
 	$(MAKE) -C $(COLORS_PATH)
 
+$(LIBFT_PATH)/libft.a: $(LIBFT_OBJS)
+
+$(LIBFT_OBJS): $(LIBFT_SRCS)
+	$(MAKE) -C $(LIBFT_PATH)
+
 $(MLX_PATH)/libmlx.a:
 	$(MAKE) -C $(MLX_PATH)
 
@@ -88,12 +96,14 @@ deepclean: clean
 	$(MAKE) clean -C $(MLX_PATH)
 	$(MAKE) clean -C $(MLX_DATA_PATH)
 	$(MAKE) clean -C $(COLORS_PATH)
+	$(MAKE) clean -C $(LIBFT_PATH)
 
 deepfclean: fclean		
 	$(MAKE) clean -C  $(MLX_PATH)
 	$(MAKE) fclean -C $(MLX_DATA_PATH)
 	$(MAKE) fclean -C $(COLORS_PATH)
-	
+	$(MAKE) fclean -C $(LIBFT_PATH)
+
 deepre: deepfclean all
 
 # === PHONY === #
