@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 19:08:54 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:16:52 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "mlx.h"
 #include "so_long.h"
+#include <X11/keysym.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -83,6 +84,13 @@ int	close_window(t_map *map)
 	exit(0);
 }
 
+int handle_keypress(int keycode, t_map *map)
+{
+	if(keycode == XK_Escape)
+		close_window(map);
+	return (0);
+}
+
 bool	check_extension(const char *filename, const char *ext)
 {
 	if (ft_strcmp(filename + (ft_strlen(filename) - ft_strlen(ext)), ext) != 0)
@@ -129,6 +137,7 @@ int	main(int ac, char **av)
 	draw_background(&data, &map);
 	mlx_loop_hook(data.win, &render, NULL);
 	mlx_hook(data.win, 17, 0, &close_window, &map);
+	mlx_hook(data.win, 2, 1L<<0, &handle_keypress, &map);
 	mlx_loop(data.mlx);
 	close_window(&map);
 	

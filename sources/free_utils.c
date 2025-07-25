@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:54:55 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 19:08:45 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/25 18:20:25 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ bool	free_asset(void *mlx, void *asset[])
 {
 	int	i;
 
+	if(!mlx)
+		return (false);
 	i = 0;
 	while (asset[i])
 	{
-		mlx_destroy_image(mlx, asset[i]);
+		mlx_destroy_image(mlx, *(asset + i));
 		i++;
 	}
 	return (false);
@@ -30,9 +32,9 @@ bool	free_asset(void *mlx, void *asset[])
 void	free_grid(void **grid)
 {
 	int	i;
-	
+
 	i = 0;
-	while(grid[i])
+	while(grid && grid[i])
 	{
 		free(grid[i]);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:39 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 19:04:57 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/25 18:14:15 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,24 @@
 #include "libft.h"
 #include "utils.h"
 
+static void init_asset_null(void *asset[])
+{
+	int	i;
+
+	i = 0;
+	while(i <= ASSETS_COUNT)
+	{
+		asset[i] = NULL;
+		i++;
+	}
+}
+
 bool	set_assets(void *mlx_ptr, void *asset[])
 {
 	int		w;
 	int		h;
-
-	asset[ASSETS_COUNT] = NULL;
+	
+	init_asset_null(asset);
 	asset[T_FLOOR] = mlx_xpm_file_to_image(mlx_ptr, PATH_FLOOR, &w, &h);
 	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_FLOOR])
 		return (free_asset(mlx_ptr, asset));

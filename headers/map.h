@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:13:19 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 18:35:08 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:10:28 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_map
 	//char		*filename;
 	
 	t_data		*data;
-	void		*asset[ASSETS_COUNT];
+	void		*asset[ASSETS_COUNT + 1];
 	char		**c_grid;
 	t_tile		**grid; // Defined in ASSETS_H
 	t_player	player;
