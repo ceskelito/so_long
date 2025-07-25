@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 18:06:02 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/23 19:12:32 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/25 19:45:42 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*img_add_transparency(void *start_img, void *start_subst)
 			{
 				//ft_memcpy(img.addr + off, subst.addr + off, 1);
 				//img.addr[off % 128] = subst.addr[off % 128];
-				img_put_pixel(&img, i, j, (unsigned long int)(subst.addr[off]));
+				img_put_pixel(&img, i, j, (off + COLOR_RED) * 2);
 				//ft_printf("addr: %u\ncolor: %u\n\n", img.addr[off], COLOR_BLUE);
 				//ft_printf("offset: %i\nimg addr: %u\nsub addr: %u\n\n", off, img.addr[off], subst.addr[off]);
 				//ft_printf("copied  ");
