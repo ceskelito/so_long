@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/25 17:16:52 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/26 13:21:09 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,19 @@ int	render(void *param)
 	return (0);
 }
 
-int	close_window(t_map *map)
+void the_last_goodbye_aka_free_all(t_map *map)
 {
-	mlx_destroy_window(map->data->mlx, map->data->win);
-	mlx_destroy_display(map->data->mlx);
-	free(map->data->mlx);
 	free_grid((void **)map->c_grid);
 	free_grid((void **)map->grid);
 	free_asset(map->data->mlx, map->asset);
+}
+
+int	close_window(t_map *map)
+{
+	the_last_goodbye_aka_free_all(map);
+	mlx_destroy_window(map->data->mlx, map->data->win);
+	mlx_destroy_display(map->data->mlx);
+	free(map->data->mlx);
 	exit(0);
 }
 
@@ -117,23 +122,17 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 	t_map	map;
-	void	*mlx_ptr;
 
 	check_args(ac, av);
 	map = get_map(av[1]);
-	map.data = &data;
-	mlx_ptr = mlx_init();
-	if (!set_assets(mlx_ptr, map.asset))
-		print_and_exit("MLX Error: Failed in retrieving the assets\n",
-			MLX_ERROR);
-	if (!map.asset)
-	{
-		free(mlx_ptr);
-		print_and_exit("Asset Error: Failed in creating images from assets\n",
-			MLX_ERROR);
-	}
-	data = data_init(mlx_ptr, map.width * ASSETS_SIZE, map.height * ASSETS_SIZE,
+	data = data_init(NULL, map.width * ASSETS_SIZE, map.height * ASSETS_SIZE,
 			"so_long");
+	if(!data.mlx)
+		print_and_exit("MLX error: Faild to create mlx instance\n",
+			MLX_ERROR);
+	map.data = &data;
+	if (!set_assets(data.mlx, map.asset))
+		close_window(&map);
 	draw_background(&data, &map);
 	mlx_loop_hook(data.win, &render, NULL);
 	mlx_hook(data.win, 17, 0, &close_window, &map);

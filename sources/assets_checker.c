@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:39 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/25 18:14:15 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/26 13:26:09 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,64 @@ static void init_asset_null(void *asset[])
 
 bool	set_assets(void *mlx_ptr, void *asset[])
 {
+	int		i;
 	int		w;
 	int		h;
-	
+	char	*path[ASSETS_COUNT];
+
+	path[T_FLOOR] = ft_strdup(PATH_FLOOR);
+	path[T_WALL] = ft_strdup(PATH_WALL);
+	path[T_EXIT] = ft_strdup(PATH_EXIT);
+	path[T_PLAYER] = ft_strdup(PATH_PLAYER);
+	path[T_ENEMY] = ft_strdup(PATH_ENEMY);
+	path[T_COLLECTIBLE] = ft_strdup(PATH_COLLECTIBLE);
+
 	init_asset_null(asset);
-	asset[T_FLOOR] = mlx_xpm_file_to_image(mlx_ptr, PATH_FLOOR, &w, &h);
-	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_FLOOR])
-		return (free_asset(mlx_ptr, asset));
-	asset[T_WALL] = mlx_xpm_file_to_image(mlx_ptr, PATH_WALL, &w, &h);
-	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_WALL])
-		return (free_asset(mlx_ptr, asset));
-	asset[T_EXIT] = mlx_xpm_file_to_image(mlx_ptr, PATH_EXIT, &w, &h);
-	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_EXIT])
-		return (free_asset(mlx_ptr, asset));
-	asset[T_PLAYER] = mlx_xpm_file_to_image(mlx_ptr, PATH_PLAYER, &w, &h);
-	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_PLAYER])
-		return (free_asset(mlx_ptr, asset));
-	asset[T_ENEMY] = mlx_xpm_file_to_image(mlx_ptr, PATH_ENEMY, &w, &h);
-	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_ENEMY])
-		return (free_asset(mlx_ptr, asset));
-	asset[T_COLLECTIBLE] = mlx_xpm_file_to_image(mlx_ptr, PATH_COLLECTIBLE,
-			&w, &h);
-	if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_COLLECTIBLE])
-		return (free_asset(mlx_ptr, asset));
-	return (true);
+	i = 0;
+	while(i < ASSETS_COUNT)
+	{
+		asset[i] = mlx_xpm_file_to_image(mlx_ptr, path[i], &w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[i])
+		{
+			asset[i] = NULL;
+			ft_printf("MLX Error: Failed in retrieving the assets\n");
+			free_asset(mlx_ptr, asset);
+			return (false);
+		}
+		i++;
+	}
+return (true);
+/*
+	init_asset_null(asset);
+	w = 0;
+	h = 0;
+	while(true)
+	{
+		asset[T_FLOOR] = mlx_xpm_file_to_image(mlx_ptr, PATH_FLOOR, &w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_FLOOR])
+			break;
+		asset[T_WALL] = mlx_xpm_file_to_image(mlx_ptr, PATH_WALL, &w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_WALL])
+			break;
+		asset[T_EXIT] = mlx_xpm_file_to_image(mlx_ptr, PATH_EXIT, &w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_EXIT])
+			break;
+		asset[T_PLAYER] = mlx_xpm_file_to_image(mlx_ptr, PATH_PLAYER, &w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_PLAYER])
+			break;
+		asset[T_ENEMY] = mlx_xpm_file_to_image(mlx_ptr, PATH_ENEMY, &w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_ENEMY])
+			break;
+		asset[T_COLLECTIBLE] = mlx_xpm_file_to_image(mlx_ptr, PATH_COLLECTIBLE,
+				&w, &h);
+		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[T_COLLECTIBLE])
+			break;
+		return (true);	
+	}
+
+	ft_printf("MLX Error: Failed in retrieving the assets\n");
+	free_asset(mlx_ptr, asset);
+	return (false);
+*/
 }
 
