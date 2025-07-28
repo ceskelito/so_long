@@ -6,23 +6,24 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:36 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 17:38:44 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:25:17 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSETS_H
 # define ASSETS_H
 
-# define ASSETS_SIZE	128
-# define ASSETS_COUNT	7
+# define ASSETS_SIZE 128
+# define ASSETS_COUNT 7
 
-# define PATH_FLOOR			"assets/floor.xpm"
-# define PATH_WALL			"assets/wall.xpm"
-# define PATH_PLAYER		"assets/player.xpm"
-# define PATH_ENEMY			"assets/tile-01.xpm"
-# define PATH_COLLECTIBLE	"assets/tile-01.xpm"
-# define PATH_EXIT			"assets/exit.xpm"
+# define PATH_FLOOR "assets/floor.xpm"
+# define PATH_WALL "assets/wall.xpm"
+# define PATH_PLAYER "assets/player.xpm"
+# define PATH_ENEMY "assets/tile-01.xpm"
+# define PATH_COLLECTIBLE "assets/tile-01.xpm"
+# define PATH_EXIT "assets/exit.xpm"
 
+# include <stdbool.h>
 typedef enum e_tile
 {
 	T_VOID,
@@ -32,8 +33,7 @@ typedef enum e_tile
 	T_PLAYER,
 	T_ENEMY,
 	T_COLLECTIBLE,
-} t_tile;
-
+}		t_tile;
 
 bool	set_assets(void *mlx_ptr, void *asset[]);
 

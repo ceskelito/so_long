@@ -6,15 +6,15 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 17:33:48 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:43:18 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "errors.h"
 #include "libft.h"
 #include "map.h"
-#include "errors.h"
 #include "utils.h"
-#include <fcntl.h>	
+#include <fcntl.h>
 #include <stdbool.h>
 
 // Return the content of the file as a string array.
@@ -40,19 +40,9 @@ static char	**extract_map(char *filename, int height)
 	return (grid);
 }
 
-// Check if the map is a rectangle, set map width/height
-// Width = len(row) - 1; beacuse row has '\n' as last character
-static bool	check_measurements(t_map *map, char *filename)
+// Function needed to reduce the number of lines in the caller func
+static bool	measurements_helper(char *row, t_map *map, int fd)
 {
-	int		fd;
-	char	*row;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (PARSE_ERROR);
-	row = get_next_line(fd);
-	map->width = ft_strlen(row) - 1;
-	map->height = 0;
 	while (row)
 	{
 		map->height++;
@@ -61,23 +51,40 @@ static bool	check_measurements(t_map *map, char *filename)
 		if (row && map->width != ft_strlen(row) - 1)
 		{
 			close(fd);
-			ft_printf("Error in Map Format: ");
-			ft_printf("Not every row has the same length\n");
+			ft_printf("Error\nNot every row of the map has the same length\n");
 			free(row);
 			return (false);
 		}
 	}
+	return (true);
+}
+
+// Check if the map is a rectangle, set map width/height
+// Width = len(row) - 1; beacuse row has '\n' as last character
+static bool	check_and_set_measurements(t_map *map, char *filename)
+{
+	char	*row;
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (false);
+	row = get_next_line(fd);
+	map->width = ft_strlen(row) - 1;
+	map->height = 0;
+	if(!measurements_helper(row, map, fd))
+		return (false);
 	close(fd);
 	if (map->width == map->height)
 	{
-		ft_printf("Error in Map Format: ");
-		ft_printf("Map is a square, need to be a rectangle\n");
+		ft_printf("Error\nMap is a square, need to be a rectangle\n");
 		return (false);
 	}
 	return (true);
 }
 
-static t_tile **translate_map(char **c_grid, int width, int height)
+// Translate the map from char to t_tile matrix (usefull ongoing in the program)
+static t_tile	**translate_map(char **c_grid, int width, int height)
 {
 	int		i;
 	int		j;
@@ -108,7 +115,7 @@ static t_tile **translate_map(char **c_grid, int width, int height)
 			else
 			{
 				tile_grid[i] = NULL;
-				free_grid((void**)tile_grid);
+				free_grid((void **)tile_grid);
 				return (NULL);
 			}
 			j++;
@@ -120,22 +127,20 @@ static t_tile **translate_map(char **c_grid, int width, int height)
 	return (tile_grid);
 }
 
-
-void continue_map_checking(t_map *map);
-
+void			continue_map_checking(t_map *map);
 
 t_map	get_map(char *filename)
 {
 	t_map	map;
 
-	if (!check_measurements(&map, filename))
+	if (!check_and_set_measurements(&map, filename))
 		exit(MAP_FORMAT_ERROR);
 	map.c_grid = extract_map(filename, map.height);
 	if (!map.c_grid)
 		print_and_exit("Error\nFailed in retrieving the map from file\n",
 			PARSE_ERROR);
 	map.grid = translate_map(map.c_grid, map.width, map.height);
-	if(!map.grid)
+	if (!map.grid)
 	{
 		free_grid((void **)map.c_grid);
 		print_and_exit("Error\nFailed in translating the map from char to t_tile\n",
@@ -144,4 +149,3 @@ t_map	get_map(char *filename)
 	continue_map_checking(&map);
 	return (map);
 }
-

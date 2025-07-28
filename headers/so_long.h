@@ -14,12 +14,11 @@
 # define SO_LONG_H
 
 /* Libraries Inclusion */
-# include "map.h"
 # include "assets.h"
 # include "errors.h"
+# include "map.h"
 # include "utils.h"
 
 /* Common definitions */
 
 #endif
-

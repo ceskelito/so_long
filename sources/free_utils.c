@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include "utils.h"
 #include <stdlib.h>
-#include "mlx.h"
 
 bool	free_asset(void *mlx, void *asset[])
 {
 	int	i;
-	
+
 	i = 0;
 	while (asset[i])
 	{
@@ -33,7 +33,7 @@ void	free_grid(void **grid)
 	int	i;
 
 	i = 0;
-	while(grid && grid[i])
+	while (grid && grid[i])
 	{
 		free(grid[i]);
 		i++;

@@ -13,8 +13,8 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <stdbool.h>
 # include "assets.h"
+# include <stdbool.h>
 
 // Free Memory Function
 bool	free_asset(void *mlx, void *asset[]);
