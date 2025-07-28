@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:54:55 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/26 12:12:01 by ceskelito        ###   ########.fr       */
+/*   Updated: 2025/07/28 15:17:12 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ bool	free_asset(void *mlx, void *asset[])
 	while (asset[i])
 	{
 		mlx_destroy_image(mlx, asset[i]);
+		asset[i] = NULL;
 		i++;
 	}
 	return (false);

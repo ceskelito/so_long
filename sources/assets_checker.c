@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:39 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/26 13:26:09 by ceskelito        ###   ########.fr       */
+/*   Updated: 2025/07/28 15:24:46 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@
 #include "mlx.h"
 #include "libft.h"
 #include "utils.h"
+
+static void free_path_array(char *path[])
+{
+	int i;
+
+	i = 0;
+	while(path[i])
+	{
+		free(path[i]);
+		path[i] = NULL;
+		i++;
+	}
+
+}
 
 static void init_asset_null(void *asset[])
 {
@@ -35,7 +49,7 @@ bool	set_assets(void *mlx_ptr, void *asset[])
 	int		i;
 	int		w;
 	int		h;
-	char	*path[ASSETS_COUNT];
+	char	*path[ASSETS_COUNT + 1];
 
 	path[T_FLOOR] = ft_strdup(PATH_FLOOR);
 	path[T_WALL] = ft_strdup(PATH_WALL);
@@ -43,6 +57,7 @@ bool	set_assets(void *mlx_ptr, void *asset[])
 	path[T_PLAYER] = ft_strdup(PATH_PLAYER);
 	path[T_ENEMY] = ft_strdup(PATH_ENEMY);
 	path[T_COLLECTIBLE] = ft_strdup(PATH_COLLECTIBLE);
+	path[ASSETS_COUNT] = NULL;
 
 	init_asset_null(asset);
 	i = 0;
@@ -51,13 +66,13 @@ bool	set_assets(void *mlx_ptr, void *asset[])
 		asset[i] = mlx_xpm_file_to_image(mlx_ptr, path[i], &w, &h);
 		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[i])
 		{
-			asset[i] = NULL;
 			ft_printf("MLX Error: Failed in retrieving the assets\n");
-			free_asset(mlx_ptr, asset);
+			free_path_array(path);
 			return (false);
 		}
 		i++;
 	}
+	free_path_array(path);
 return (true);
 /*
 	init_asset_null(asset);
