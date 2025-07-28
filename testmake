@@ -1,2 +1,0 @@
-all:
-	$(MAKE) print -C LIBFT_EXTENSIBLE/mk.var.export/ 

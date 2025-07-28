@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:36 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/24 18:49:58 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:38:44 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ASSETS_H
 
 # define ASSETS_SIZE	128
-# define ASSETS_COUNT	6
+# define ASSETS_COUNT	7
 
 # define PATH_FLOOR			"assets/floor.xpm"
 # define PATH_WALL			"assets/wall.xpm"
@@ -25,6 +25,7 @@
 
 typedef enum e_tile
 {
+	T_VOID,
 	T_FLOOR,
 	T_WALL,
 	T_EXIT,
