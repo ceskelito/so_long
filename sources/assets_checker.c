@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:39 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 15:24:46 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:53:28 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void free_path_array(char *path[])
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while(path[i])
 	{
 		free(path[i]);
@@ -51,6 +51,7 @@ bool	set_assets(void *mlx_ptr, void *asset[])
 	int		h;
 	char	*path[ASSETS_COUNT + 1];
 
+	path[T_VOID] = NULL;
 	path[T_FLOOR] = ft_strdup(PATH_FLOOR);
 	path[T_WALL] = ft_strdup(PATH_WALL);
 	path[T_EXIT] = ft_strdup(PATH_EXIT);
@@ -60,13 +61,13 @@ bool	set_assets(void *mlx_ptr, void *asset[])
 	path[ASSETS_COUNT] = NULL;
 
 	init_asset_null(asset);
-	i = 0;
+	i = 1;
 	while(i < ASSETS_COUNT)
 	{
 		asset[i] = mlx_xpm_file_to_image(mlx_ptr, path[i], &w, &h);
 		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[i])
 		{
-			ft_printf("MLX Error: Failed in retrieving the assets\n");
+			ft_printf("Error\nFailed in retrieving the assets\n");
 			free_path_array(path);
 			return (false);
 		}

@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/25 18:12:40 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:33:48 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,59 +77,52 @@ static bool	check_measurements(t_map *map, char *filename)
 	return (true);
 }
 
-static void free_map(t_tile **map, int h)
-{
-	int	i;
-
-	i = 0;
-	while (i < h)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
-static t_tile **translate_map(char **c_map, int width, int height)
+static t_tile **translate_map(char **c_grid, int width, int height)
 {
 	int		i;
 	int		j;
-	t_tile	**i_map;
+	t_tile	**tile_grid;
 
-	i_map = ft_calloc(height + 1, sizeof(t_tile *));
+	tile_grid = ft_calloc(height + 1, sizeof(t_tile *));
 	i = 0;
 	while (i < height)
 	{
-		i_map[i] = ft_calloc(width, sizeof(t_tile));
+		tile_grid[i] = ft_calloc(width + 1, sizeof(t_tile));
 		j = 0;
 		while (j < width)
 		{
-			if (c_map[i][j] == C_FLOOR)
-				i_map[i][j] = T_FLOOR;
-			else if (c_map[i][j] == C_WALL)
-				i_map[i][j] = T_WALL;
-			else if (c_map[i][j] == C_PLAYER)
-				i_map[i][j] = T_PLAYER;
-			else if (c_map[i][j] == C_EXIT)
-				i_map[i][j] = T_EXIT;
-			else if (c_map[i][j] == C_COLLECTIBLE)
-				i_map[i][j] = T_COLLECTIBLE;
-			else if (c_map[i][j] == C_ENEMY)
-				i_map[i][j] = T_ENEMY;
-			else if (c_map[i][j] == '\n')
+			if (c_grid[i][j] == C_FLOOR)
+				tile_grid[i][j] = T_FLOOR;
+			else if (c_grid[i][j] == C_WALL)
+				tile_grid[i][j] = T_WALL;
+			else if (c_grid[i][j] == C_PLAYER)
+				tile_grid[i][j] = T_PLAYER;
+			else if (c_grid[i][j] == C_EXIT)
+				tile_grid[i][j] = T_EXIT;
+			else if (c_grid[i][j] == C_COLLECTIBLE)
+				tile_grid[i][j] = T_COLLECTIBLE;
+			else if (c_grid[i][j] == C_ENEMY)
+				tile_grid[i][j] = T_ENEMY;
+			else if (c_grid[i][j] == '\n')
 				;
 			else
 			{
-				free_map(i_map, i);
+				tile_grid[i] = NULL;
+				free_grid((void**)tile_grid);
 				return (NULL);
 			}
 			j++;
+			tile_grid[i][width] = T_VOID;
 		}
 		i++;
 	}
-	i_map[height] = NULL;
-	return (i_map);
+	tile_grid[height] = 0;
+	return (tile_grid);
 }
+
+
+void continue_map_checking(t_map *map);
+
 
 t_map	get_map(char *filename)
 {
@@ -139,14 +132,16 @@ t_map	get_map(char *filename)
 		exit(MAP_FORMAT_ERROR);
 	map.c_grid = extract_map(filename, map.height);
 	if (!map.c_grid)
-		print_and_exit("Parse Error: Failed in retrieving the map\n",
+		print_and_exit("Error\nFailed in retrieving the map from file\n",
 			PARSE_ERROR);
 	map.grid = translate_map(map.c_grid, map.width, map.height);
 	if(!map.grid)
 	{
 		free_grid((void **)map.c_grid);
-		print_and_exit("Parse Error: Failed in translating the map\n",
+		print_and_exit("Error\nFailed in translating the map from char to t_tile\n",
 			PARSE_ERROR);
 	}
+	continue_map_checking(&map);
 	return (map);
 }
+
