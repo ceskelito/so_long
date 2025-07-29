@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 18:43:18 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:09:51 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ static t_tile	**translate_map(char **c_grid, int width, int height)
 	return (tile_grid);
 }
 
-void			continue_map_checking(t_map *map);
+void	continue_map_checking(t_map *map);
+bool	flood_fill(t_map *map);
 
 t_map	get_map(char *filename)
 {
@@ -147,5 +148,12 @@ t_map	get_map(char *filename)
 			PARSE_ERROR);
 	}
 	continue_map_checking(&map);
+	if (!flood_fill(&map))
+	{
+		free_grid((void **)map.c_grid);
+		free_grid((void **)map.grid);
+		print_and_exit("Error\nNo path in the map leads to the exit\n",
+				PARSE_ERROR);
+	}
 	return (map);
 }

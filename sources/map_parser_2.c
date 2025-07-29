@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:23:43 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 18:08:54 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:10:32 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,29 @@
 #include "utils.h"
 #include <fcntl.h>
 #include <stdbool.h>
+
+void	set_player_position(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			if (map->grid[i][j] == T_PLAYER)
+			{
+				map->player.x = j;
+				map->player.y = i;
+				return;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 static bool	check_symbols_count(t_tile **grid)
 {
@@ -54,7 +77,7 @@ bool	check_wall_enclosure(t_map *map)
 		if (map->grid[0][i++] != T_WALL)
 			return (false);
 	i = 0;
-	while (i < map->width - 1)
+	while (i < map->width)
 		if (map->grid[map->height - 1][i++] != T_WALL)
 			return (false);
 	i = 1;
@@ -83,4 +106,5 @@ void	continue_map_checking(t_map *map)
 		free_grid((void **)map->grid);
 		print_and_exit("Error\nWalls dont't close the map\n", PARSE_ERROR);
 	}
+	set_player_position(map);
 }
