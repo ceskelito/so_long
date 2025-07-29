@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:54:55 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 15:17:12 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:17:47 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	free_asset(void *mlx, void *asset[])
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (asset[i])
 	{
 		mlx_destroy_image(mlx, asset[i]);
