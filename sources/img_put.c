@@ -4,39 +4,70 @@
 
 #include <libft.h>
 
-void	img_add_transparency(void *front_ptr, void *back_ptr)
+static int	get_image_square_size(void *img_ptr)
+{
+    int	size;
+    int	bits_per_pixel;
+    int	line_length;
+
+    mlx_get_data_addr(img_ptr, &bits_per_pixel, &line_length, NULL);
+    size = line_length / (bits_per_pixel / 8);
+    return (size);
+}
+
+static void	set_image_transparency(void *front_ptr, void *back_ptr)
 {
 	t_data_img	front;
 	t_data_img	back;
-	int			*front_pixels;
-	int			*back_pixels;
+	int			index[2];
 	int			off;
-	int			i;
-	int			j;
-
-	front.img = front_ptr;
-	front.addr = mlx_get_data_addr(front.img, &front.bpp, &front.line_len,
-			&front.endian);
-	back.img = back_ptr;
-	back.addr = mlx_get_data_addr(back.img, &back.bpp, &back.line_len,
-			&back.endian);
-    front_pixels = (int *)front.addr;
-    back_pixels = (int *)back.addr;
-	i = 0;
-	while(i < ASSETS_SIZE)
+	
+	
+	front.pixels = (int*)mlx_get_data_addr(front_ptr, NULL, &front.line_len, NULL);
+    back.pixels = (int *)mlx_get_data_addr(back_ptr, NULL, NULL, NULL);
+	index[0] = 0;
+	while(index[0] < ASSETS_SIZE)
 	{
-		j = 0;
-		while (j < ASSETS_SIZE)
+		index[1] = 0;
+		while (index[1] < ASSETS_SIZE)
 		{
-			off = i * (front.line_len / 4) + j;
-			//off = img_get_offset(&front, i, j);
-			//ft_printf("%u\n", (unsigned int)front.addr[off]);
-			//ft_printf("Pixel [%d,%d]: 0x%08X\n", i, j, front_pixels[off]);
-			if ((front_pixels[off] & 0x00FFFFFF) == 0)
-				front_pixels[off] = back_pixels[off];
-			j++;
+			//off = img_get_offset_4_byte(front.line_len, index[1], index[0]);
+			off = (index[0] * (front.line_len / 4) + index[1]);
+			if ((front.pixels[off] & 0x00FFFFFF) == 0)
+				front.pixels[off] = back.pixels[off];
+			index[1]++;
 		}
-		i++;
+		index[0]++;
 	}
 }
 
+
+
+void	img_put_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, void *background_ptr, int x, int y)
+{
+	t_data_img	new;
+	t_data_img	img;
+	int			size;
+	int			i;
+
+	if(!background_ptr)
+	{
+		mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y);
+		return;
+	}
+	img.img = img_ptr;
+	size = get_image_square_size(img_ptr);
+	new.img = mlx_new_image(mlx_ptr, size, size);
+	if(!new.img)
+		return;
+	img.pixels = (int*)mlx_get_data_addr(img_ptr, NULL, &img.line_len, NULL);
+    new.pixels = (int*)mlx_get_data_addr(new.img, NULL, NULL, NULL);
+    i = 0;
+    while (i < (size * size))
+    {
+        new.pixels[i] = img.pixels[i];
+        i++;
+    }
+	set_image_transparency(new.img, background_ptr);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, new.img, x, y);
+}

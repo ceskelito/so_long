@@ -11,11 +11,14 @@
 
 //void	img_put_on_window()
 
-int img_get_offset(t_data_img *img, int x, int y)
+int	img_get_offset_4_byte(int line_length, int x, int y)
 {
-	if(!img)
-		exit(MLX_ERROR);
-	return (y * img->line_len + x * (img->bpp / 8));
+	return (y * (line_length / 4) + x);
+}
+
+int img_get_offset(int line_length, int bits_per_pixel, int x, int y)
+{
+	return (y * line_length + x * (bits_per_pixel / 8));
 }
 
 void img_put_pixel(t_data_img *img, int x, int y, int color)

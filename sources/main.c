@@ -6,7 +6,7 @@
 /*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 18:22:45 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:25:53 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ void	render(t_data *data, t_map *map)
 		while (j < map->height)
 		{
 			if (map->grid[j][i] == T_PLAYER)
-				img_add_transparency(map->asset[T_PLAYER], map->asset[T_FLOOR]);
-			mlx_put_image_to_window(data->mlx, data->win,
-				map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
+				img_put_to_window(data->mlx, data->win, 
+					map->asset[T_PLAYER], map->asset[T_FLOOR],
+					i * ASSETS_SIZE, j * ASSETS_SIZE);
+			else
+				mlx_put_image_to_window(data->mlx, data->win,
+					map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
 			j++;
 		}
 		i++;
