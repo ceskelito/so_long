@@ -4,6 +4,7 @@
 
 #include <libft.h>
 
+/*
 static int	get_image_square_size(void *img_ptr)
 {
     int	size;
@@ -17,8 +18,9 @@ static int	get_image_square_size(void *img_ptr)
     size = line_length / (bits_per_pixel / 8);
     return (size);
 }
+*/
 
-static void	set_image_transparency(void *front_ptr, void *back_ptr)
+static void	set_image_transparency_not_use(void *front_ptr, void *back_ptr)
 {
 	t_data_img	front;
 	t_data_img	back;
@@ -44,14 +46,28 @@ static void	set_image_transparency(void *front_ptr, void *back_ptr)
 	}
 }
 
+static void	set_image_transparecy(t_data_img front, t_data_img back)
+{
 
+
+}
+
+int *get_img_pixels(void *img_ptr)
+{
+	char *addr;
+
+	addr = mlx_get_data_addr(img_ptr, NULL , NULL, NULL);
+	return ((int*)addr);
+
+}
 
 void	img_put_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, void *background_ptr, int x, int y)
 {
-	t_data_img	new;
+	//t_data_img	new;
 	t_data_img	img;
 	int			size;
 	int			i;
+	int			*pixels_mod;
 
 	if (!mlx_ptr)
 		return;
@@ -59,22 +75,17 @@ void	img_put_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, void *backgr
 		mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y);
 		return;
 	}
-	
-	new.img = mlx_new_image(mlx_ptr, size, size);
 
 	size = ASSETS_SIZE;//get_image_square_size(img_ptr);
-	
-	img.addr = mlx_get_data_addr(img_ptr, &img.bpp , &img.line_len, &img.endian);
-	img.pixels = (int *)img.addr;
-	new.addr = mlx_get_data_addr(new.img, &new.bpp , &new.line_len, &new.endian);
-	new.pixels = (int *)new.addr;
-	//return;
+
+	img.pixels = get_img_pixels(img_ptr);
+	pixels_mod = ft_calloc(sizeof(int), (size * size) / 4);
     i = 0;
-    while (i < (size * size))
+    while (i < (size * size) / 4)
     {
-        new.pixels[i] = img.pixels[i];
+        pixels_mod[i] = img.pixels[i];
         i++;
     }
-	//set_image_transparency(new.img, background_ptr);
-	mlx_put_image_to_window(mlx_ptr, win_ptr, new.img, x, y);
+	//set_image_transparency(front, background_ptr);
+	//mlx_put_image_to_window(mlx_ptr, win_ptr, new.img, x, y);
 }
