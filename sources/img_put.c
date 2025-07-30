@@ -9,8 +9,11 @@ static int	get_image_square_size(void *img_ptr)
     int	size;
     int	bits_per_pixel;
     int	line_length;
+	int	endian;
 
-    mlx_get_data_addr(img_ptr, &bits_per_pixel, &line_length, NULL);
+	if(!img_ptr)
+		return (-1);
+    mlx_get_data_addr(img_ptr, &bits_per_pixel, &line_length, &endian);
     size = line_length / (bits_per_pixel / 8);
     return (size);
 }
@@ -50,24 +53,28 @@ void	img_put_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, void *backgr
 	int			size;
 	int			i;
 
-	if(!background_ptr)
-	{
+	if (!mlx_ptr)
+		return;
+	if (!background_ptr){
 		mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y);
 		return;
 	}
-	img.img = img_ptr;
-	size = get_image_square_size(img_ptr);
+	
 	new.img = mlx_new_image(mlx_ptr, size, size);
-	if(!new.img)
-		return;
-	img.pixels = (int*)mlx_get_data_addr(img_ptr, NULL, &img.line_len, NULL);
-    new.pixels = (int*)mlx_get_data_addr(new.img, NULL, NULL, NULL);
+
+	size = ASSETS_SIZE;//get_image_square_size(img_ptr);
+	
+	img.addr = mlx_get_data_addr(img_ptr, &img.bpp , &img.line_len, &img.endian);
+	img.pixels = (int *)img.addr;
+	new.addr = mlx_get_data_addr(new.img, &new.bpp , &new.line_len, &new.endian);
+	new.pixels = (int *)new.addr;
+	//return;
     i = 0;
     while (i < (size * size))
     {
         new.pixels[i] = img.pixels[i];
         i++;
     }
-	set_image_transparency(new.img, background_ptr);
+	//set_image_transparency(new.img, background_ptr);
 	mlx_put_image_to_window(mlx_ptr, win_ptr, new.img, x, y);
 }
