@@ -18,6 +18,7 @@
 # include "errors.h"
 # include "map.h"
 # include "utils.h"
+# include "mlx.h"
 
 /* Common definitions */
 

@@ -11,12 +11,12 @@ OBJS = $(MLX_DATA_OBJS)
 
 INCLUDES	= -I../../minilibx-linux
 
-all : $(NAME)
+all: $(NAME)
 
-%.o : %.c
+%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME) : $(OBJS)
+$(NAME): $(OBJS)
 	$(AR) $@ $^
 
 clean:

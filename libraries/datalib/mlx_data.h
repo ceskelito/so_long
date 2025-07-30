@@ -1,6 +1,10 @@
 #ifndef MLX_DATA_H
 # define MLX_DATA_H
 
+# ifndef MLX_ERROR
+#  define MLX_ERROR 1
+# endif
+
 typedef struct s_data {
 	void	*mlx;
 	void	*win;

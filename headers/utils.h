@@ -22,4 +22,6 @@ void	free_grid(void **grid);
 
 void	print_and_exit(char *msg, int exit_code);
 
+void	img_add_transparency(void *front_ptr, void *back_ptr);
+
 #endif

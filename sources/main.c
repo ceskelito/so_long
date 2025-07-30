@@ -19,7 +19,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-void	draw_background(t_data *data, t_map *map)
+void	render(t_data *data, t_map *map)
 {
 	int	i;
 	int	j;
@@ -30,8 +30,8 @@ void	draw_background(t_data *data, t_map *map)
 	{
 		while (j < map->height)
 		{
-			mlx_put_image_to_window(data->mlx, data->win, map->asset[T_PLAYER],
-				i * ASSETS_SIZE, j * ASSETS_SIZE);
+			if (map->grid[j][i] == T_PLAYER)
+				img_add_transparency(map->asset[T_PLAYER], map->asset[T_FLOOR]);
 			mlx_put_image_to_window(data->mlx, data->win,
 				map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
 			j++;
@@ -41,7 +41,7 @@ void	draw_background(t_data *data, t_map *map)
 	}
 }
 
-int	render(void *param)
+int	render_void(void *param)
 {
 	if (param)
 		return (0);
@@ -106,8 +106,8 @@ int	main(int ac, char **av)
 	map.data = &data;
 	if (!set_assets(data.mlx, map.asset))
 		close_window(&map);
-	draw_background(&data, &map);
-	mlx_loop_hook(data.win, &render, NULL);
+	render(&data, &map);
+	mlx_loop_hook(data.win, &render_void, NULL);
 	mlx_hook(data.win, 17, 0, &close_window, &map);
 	mlx_hook(data.win, 2, 1L << 0, &handle_keypress, &map);
 	mlx_loop(data.mlx);
