@@ -17,15 +17,13 @@
 // I'll use the T_PLAYER value to sign the checked tiles 
 static bool floodfill(t_tile **grid, int x, int y)
 {
-    if (!grid[x] || !grid[x][y] || grid[x][y] == T_VOID)
+    if (grid[y][x] == T_WALL)
         return (false);
-    if (grid[x][y] == T_WALL)
-        return (false);
-    if (grid[x][y] == T_PLAYER)
+	else if (grid[y][x] == T_PLAYER)
 		return (false);
-	if (grid[x][y] == T_EXIT)
+	else if (grid[y][x] == T_EXIT)
         return (true);
-    grid[x][y] = T_PLAYER;
+    grid[y][x] = T_PLAYER;
     return (floodfill(grid, x + 1, y) ||
         floodfill(grid, x - 1, y) ||
         floodfill(grid, x, y + 1) ||
