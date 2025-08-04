@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/29 18:27:00 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:44:21 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ bool flood_fill(t_map *map)
 		grid[i][map->width] = T_VOID;
 		i++;
 	}
-	grid[map->height] = NULL;
+	grid[map->height] = T_VOID;
 	grid[map->player.y][map->player.x] = T_FLOOR;
 	return (floodfill(grid, map->player.x, map->player.y));
 }
