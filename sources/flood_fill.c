@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 15:13:58 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:30:45 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,46 @@
 
 #define T_VISITED ASSETS_COUNT + 1 
 
+void print_grid(int **grid, int height, int width)
+{
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            // Usa un carattere per rappresentare ciascun tipo di tile
+            switch ((int)grid[y][x])
+            {
+                case T_VOID:
+                    ft_printf("  ");  // Spazio vuoto, puoi scegliere un altro simbolo
+                    break;
+                case T_WALL:
+                    ft_printf("X ");  // Parete, rappresentata da "X"
+                    break;
+                case T_PLAYER:
+                    ft_printf("P ");  // Giocatore, rappresentato da "P"
+                    break;
+                case T_EXIT:
+                    ft_printf("E ");  // Uscita, rappresentata da "E"
+                    break;
+				case T_VISITED:
+					ft_printf("V ");  // Tile visitato, rappresentato da "V"
+					break;
+				case T_COLLECTIBLE:
+					ft_printf("C ");  // Collezionabile, rappresentato da "C"
+					break;
+                default:
+                    ft_printf(". ");  // Altri tipi di tile (opzionale), rappresentati da "."
+                    break;
+            }
+        }
+        ft_printf("\n");  // A capo alla fine di ogni riga
+    }
+	ft_printf("FINE GRIGLIA\n");
+}
+
 typedef struct s_grid
 {
-	t_tile	**grid;
+	int		**grid;
 	int		width;
 	int		height;
 
@@ -29,6 +66,8 @@ static void floodfill(t_grid *g, int x, int y)
 {
 	if (x < 0 || x >= g->width || y < 0 || y >= g->height)
         return;
+	if (g->grid[y][x] == T_WALL || g->grid[y][x] == T_VISITED || g->grid[y][x] == T_VOID)
+		return;
     g->grid[y][x] = T_VISITED;
 	floodfill(g, x + 1, y);
 	floodfill(g, x - 1, y);
@@ -43,6 +82,7 @@ static bool map_is_completable(t_grid *g, int x, int y)
 	int	j;
 
 	floodfill(g, x, y);
+	print_grid(g->grid, g->height, g->width);
 	i = 0;
 	while (i < g->height)
 	{
@@ -70,37 +110,6 @@ static void	free_grid(t_grid *g)
 	free(g->grid);
 }	
 
-//void print_grid(t_tile **grid, int height, int width)
-//{
-//    for (int y = 0; y < height; y++)
-//    {
-//        for (int x = 0; x < width; x++)
-//        {
-//            // Usa un carattere per rappresentare ciascun tipo di tile
-//            switch (grid[y][x])
-//            {
-//                case T_VOID:
-//                    ft_printf("  ");  // Spazio vuoto, puoi scegliere un altro simbolo
-//                    break;
-//                case T_WALL:
-//                    ft_printf("X ");  // Parete, rappresentata da "X"
-//                    break;
-//                case T_PLAYER:
-//                    ft_printf("P ");  // Giocatore, rappresentato da "P"
-//                    break;
-//                case T_EXIT:
-//                    ft_printf("E ");  // Uscita, rappresentata da "E"
-//                    break;
-//                default:
-//                    ft_printf(". ");  // Altri tipi di tile (opzionale), rappresentati da "."
-//                    break;
-//            }
-//        }
-//        ft_printf("\n");  // A capo alla fine di ogni riga
-//    }
-//	ft_printf("FINE GRIGGLIA\n");
-//}
-
 bool flood_fill(t_map *map)
 {
 	int												i;
@@ -109,21 +118,20 @@ bool flood_fill(t_map *map)
 	ft_memset(&g, 0,  sizeof(t_grid));
 	g.height = map->height;
 	g.width = map->width;
-	g.grid = ft_calloc(map->height + 1, sizeof(t_tile *));
+	g.grid = ft_calloc(map->height + 1, sizeof(int *));
 	if(!g.grid)
 		return (false);
 	i = 0;
 	while(i < map->height)
 	{
-		g.grid[i] = ft_calloc(map->width + 1, sizeof(t_tile));
+		g.grid[i] = ft_calloc(map->width + 1, sizeof(int));
 		if(!g.grid[i])
 			return (false);
-		ft_memcpy(g.grid[i], map->grid[i], map->width * sizeof(t_tile));
-		g.grid[i][map->width] = T_VOID;
+		ft_memcpy(g.grid[i], map->grid[i], map->width * sizeof(int));
+		g.grid[i][map->width] = (int)T_VOID;
 		i++;
 	}
 	g.grid[map->height] = NULL;
-	g.grid[map->player.y][map->player.x] = T_FLOOR;
 	return (map_is_completable(&g, map->player.x, map->player.y));
 }
 
