@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/29 17:09:51 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:16:11 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ t_map	get_map(char *filename)
 {
 	t_map	map;
 
+	ft_memset(&map, 0, sizeof(t_map));
 	if (!check_and_set_measurements(&map, filename))
 		exit(MAP_FORMAT_ERROR);
 	map.c_grid = extract_map(filename, map.height);
