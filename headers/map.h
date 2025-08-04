@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:13:19 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 12:04:16 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:45:37 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # define C_ENEMY 'X'
 # define C_COLLECTIBLE 'C'
 # define C_PLAYER 'P'
+
+// only used in flood_fill
+typedef struct s_grid
+{
+	int		**grid;
+	int		width;
+	int		height;
+
+}			t_grid;
 
 typedef struct s_player
 {
