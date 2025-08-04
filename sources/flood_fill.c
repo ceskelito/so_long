@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 12:25:56 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 12:59:57 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,43 @@
 #include "libft.h"
 #include <stdlib.h>
 
-// I'll use the T_PLAYER value to sign the checked tiles 
-static bool floodfill(t_tile **grid, int x, int y)
+typedef struct s_grid
 {
-    if (grid[y][x] == T_WALL)
-        return (false);
-	else if (grid[y][x] == T_PLAYER)
+	t_tile	**grid;
+	int		width;
+	int		height;
+
+} t_grid;
+
+// I'll use the T_PLAYER value to sign the checked tiles 
+static bool floodfill(t_grid *g, int x, int y)
+{
+	if (x < 0 || x >= g->width || y < 0 || y >= g->height)
 		return (false);
-	else if (grid[y][x] == T_EXIT)
+    if (g->grid[y][x] == T_WALL)
+        return (false);
+	else if (g->grid[y][x] == T_PLAYER)
+		return (false);
+	else if (g->grid[y][x] == T_EXIT)
         return (true);
-    grid[y][x] = T_PLAYER;
-    return (floodfill(grid, x + 1, y) ||
-        floodfill(grid, x - 1, y) ||
-        floodfill(grid, x, y + 1) ||
-        floodfill(grid, x, y - 1));
+    g->grid[y][x] = T_PLAYER;
+    return (floodfill(g, x + 1, y) ||
+        floodfill(g, x - 1, y) ||
+        floodfill(g, x, y + 1) ||
+        floodfill(g, x, y - 1));
 }
 
-static void	free_grid(t_tile ***grid)
+static void	free_grid(t_grid *g)
 {
 	int	i;
-
+	
 	i = 0;
-	while((*grid)[i])
+	while(i < g->height)
 	{
-		free((*grid)[i]);
+		free(g->grid[i]);
 		i++;
 	}
-	free(*grid);
+	free(g->grid);
 }	
 
 //void print_grid(t_tile **grid, int height, int width)
@@ -74,24 +84,25 @@ static void	free_grid(t_tile ***grid)
 //	ft_printf("FINE GRIGGLIA\n");
 //}
 
-
 bool flood_fill(t_map *map)
 {
 	int												i;
-	t_tile __attribute__	((cleanup(free_grid)))	**grid;
+	t_grid __attribute__	((cleanup(free_grid)))	g;
 
-	grid = ft_calloc(map->height + 1, sizeof(t_tile *));
+	g.grid = ft_calloc(map->height + 1, sizeof(t_tile *));
 	i = 0;
 	while(i < map->height)
 	{
-		grid[i] = ft_calloc(map->width + 1, sizeof(t_tile));
-		if(!grid[i])
+		g.grid[i] = ft_calloc(map->width + 1, sizeof(t_tile));
+		if(!g.grid[i])
 			return (false);
-		ft_memcpy(grid[i], map->grid[i], map->width * sizeof(t_tile));
-		grid[i][map->width] = T_VOID;
+		ft_memcpy(g.grid[i], map->grid[i], map->width * sizeof(t_tile));
+		g.grid[i][map->width] = T_VOID;
 		i++;
 	}
-	grid[map->height] = T_VOID;
-	grid[map->player.y][map->player.x] = T_FLOOR;
-	return (floodfill(grid, map->player.x, map->player.y));
+	g.height = map->height;
+	g.width = map->width;
+	g.grid[map->height] = NULL;
+	g.grid[map->player.y][map->player.x] = T_FLOOR;
+	return (floodfill(&g, map->player.x, map->player.y));
 }
