@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:13:19 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 11:14:37 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 12:04:16 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
+	bool		on_exit;
 	int			moves;
 	int			collectibles;
 }				t_player;

@@ -28,7 +28,7 @@ LIBRARIES = $(MLX_DATA_PATH)/$(MLX_DATA_LIB) \
 			$(LIBFT_PATH)/libft.a
 
 # Project files
-SRCS_NAMES = assets_checker.c flood_fill.c free_utils.c main.c map_parser.c map_parser_2.c utils.c
+SRCS_NAMES = assets_checker.c flood_fill.c free_utils.c main.c map_parser.c map_parser_2.c movement.c utils.c
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 
