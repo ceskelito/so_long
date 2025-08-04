@@ -6,13 +6,15 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 13:16:47 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:25:18 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 #include "libft.h"
 #include <stdlib.h>
+
+#define T_VISITED ASSETS_COUNT + 1 
 
 typedef struct s_grid
 {
@@ -22,8 +24,31 @@ typedef struct s_grid
 
 } t_grid;
 
-// I'll use the T_PLAYER value to sign the checked tiles 
+
 static bool floodfill(t_grid *g, int x, int y)
+{
+	bool result;
+
+    if (x < 0 || x >= g->width || y < 0 || y >= g->height)
+        return (false);
+    if (g->grid[y][x] == T_WALL || g->grid[y][x] == T_VOID)
+        return (false);
+    if (g->grid[y][x] == T_VISITED)
+        return (false);
+    if (g->grid[y][x] == T_EXIT)
+        return (true);
+    g->grid[y][x] = T_VISITED;
+    result = (
+				floodfill(g, x + 1, y) ||
+				floodfill(g, x - 1, y) ||
+				floodfill(g, x, y + 1) ||
+				floodfill(g, x, y - 1)
+			);
+    return (result);
+}
+
+// I'll use the T_PLAYER value to sign the checked tiles 
+static bool not_floodfill(t_grid *g, int x, int y)
 {
 	if (x < 0 || x >= g->width || y < 0 || y >= g->height)
 		return (false);
@@ -92,6 +117,8 @@ bool flood_fill(t_map *map)
 	g.height = map->height;
 	g.width = map->width;
 	g.grid = ft_calloc(map->height + 1, sizeof(t_tile *));
+	if(!g.grid)
+		return (false);
 	i = 0;
 	while(i < map->height)
 	{
