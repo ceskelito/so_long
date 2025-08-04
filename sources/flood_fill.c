@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 12:59:57 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:09:37 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ bool flood_fill(t_map *map)
 	int												i;
 	t_grid __attribute__	((cleanup(free_grid)))	g;
 
+	g.height = map->height;
+	g.width = map->width;
+	ft_printf("FLOOD FILL MAP %d x %d\n", map->width, map->height); //DEBUG
+	exit(0);
 	g.grid = ft_calloc(map->height + 1, sizeof(t_tile *));
 	i = 0;
 	while(i < map->height)
@@ -100,8 +104,6 @@ bool flood_fill(t_map *map)
 		g.grid[i][map->width] = T_VOID;
 		i++;
 	}
-	g.height = map->height;
-	g.width = map->width;
 	g.grid[map->height] = NULL;
 	g.grid[map->player.y][map->player.x] = T_FLOOR;
 	return (floodfill(&g, map->player.x, map->player.y));
