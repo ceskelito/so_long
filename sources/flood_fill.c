@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 15:30:45 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 15:32:07 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ void print_grid(int **grid, int height, int width)
 				case T_COLLECTIBLE:
 					ft_printf("C ");  // Collezionabile, rappresentato da "C"
 					break;
+				case T_FLOOR:
+					ft_printf(". ");  // Pavimento, rappresentato da "F"
+					break;
                 default:
-                    ft_printf(". ");  // Altri tipi di tile (opzionale), rappresentati da "."
+                    ft_printf("? ");  // Altri tipi di tile (opzionale), rappresentati da "."
                     break;
             }
         }
