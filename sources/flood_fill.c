@@ -66,9 +66,9 @@ static void	free_grid(t_grid *g)
 
 bool	flood_fill(t_map *map)
 {
-	int												i;
-	t_grid __attribute__	((cleanup(free_grid)))	g;
+	int	i;
 
+	t_grid __attribute__((cleanup(free_grid))) g;
 	ft_memset(&g, 0, sizeof(t_grid));
 	g.height = map->height;
 	g.width = map->width;

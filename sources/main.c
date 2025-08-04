@@ -6,7 +6,7 @@
 /*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 12:12:33 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:17:48 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,23 @@ int	close_window(t_map *map)
 
 int	handle_keypress(int keycode, t_map *map)
 {
+	int	win;
+
 	if (keycode == XK_Escape)
 		close_window(map);
 	else if (keycode == XK_Left || keycode == XK_a)
-		move_player(map, -1, 0);
+		win = move_player(map, -1, 0);
 	else if (keycode == XK_Right || keycode == XK_d)
-		move_player(map, 1, 0);
+		win = move_player(map, 1, 0);
 	else if (keycode == XK_Up || keycode == XK_w)
-		move_player(map, 0, -1);
+		win = move_player(map, 0, -1);
 	else if (keycode == XK_Down || keycode == XK_s)
-		move_player(map, 0, 1);
+		win = move_player(map, 0, 1);
+	if (win)
+	{
+		ft_printf("Error:\nToo skilled player has won the game\n");
+		close_window(map);
+	}
 	return (0);
 }
 
