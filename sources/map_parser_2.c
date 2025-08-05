@@ -6,16 +6,16 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:23:43 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:56:46 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:20:32 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include "errors.h"
-#include "libft.h"
 #include "map.h"
 #include "utils.h"
-#include <fcntl.h>
-#include <stdbool.h>
+#include "libft.h"
 
 void	set_player_position(t_map *map)
 {

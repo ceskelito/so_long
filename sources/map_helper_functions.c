@@ -6,15 +6,15 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:30:22 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:57:11 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:19:32 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdbool.h>
 
 #include "libft.h"
 #include "so_long.h"
 #include "utils.h"
-#include <fcntl.h>
-#include <stdbool.h>
 
 // Abbreviate the translate_map function
 bool	translate_helper(char **c_grid, t_tile **tile_grid, int i, int j)

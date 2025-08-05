@@ -6,14 +6,15 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:54:55 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:57:47 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:21:17 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "mlx.h"
-#include "utils.h"
 #include <stdlib.h>
+
+#include "utils.h"
+#include "mlx.h"
+#include "libft.h"
 
 void	print_and_exit(char *msg, int exit_code)
 {

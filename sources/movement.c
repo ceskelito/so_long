@@ -6,13 +6,13 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 11:07:30 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 16:07:37 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:20:49 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 #include "libft.h"
 #include "mlx.h"
-#include "so_long.h"
 
 static void	render_one(t_data *data, void *img, int x, int y)
 {

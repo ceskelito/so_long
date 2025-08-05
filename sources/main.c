@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:57:31 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:18:42 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "colors.h"
-#include "libft.h"
-#include "mlx.h"
-#include "mlx_data.h"
 #include "so_long.h"
+#include "libft.h"
+#include "mlx_data.h"
+#include "colors.h"
+#include "mlx.h"
 
 void	render_all(t_data *data, t_map *map)
 {

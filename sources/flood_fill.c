@@ -6,13 +6,14 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:59:02 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:17:51 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "libft.h"
 #include "map.h"
-#include <stdlib.h>
 
 #define T_VISITED 99
 

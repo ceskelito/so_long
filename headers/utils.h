@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:55:39 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:56:12 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:16:24 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 # include "map.h" 
 # include "assets.h"
-
 
 // Free Memory Function
 bool	free_asset(void *mlx, void *asset[]);

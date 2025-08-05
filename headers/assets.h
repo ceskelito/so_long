@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:36 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 18:25:17 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:16:40 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define PATH_EXIT "assets/exit.xpm"
 
 # include <stdbool.h>
+
 typedef enum e_tile
 {
 	T_VOID,
