@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:23:43 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 12:20:32 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:03:47 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	continue_map_checking(t_map *map)
 	{
 		free_grid((void **)map->c_grid);
 		free_grid((void **)map->grid);
-		print_and_exit("Error\nWalls dont't close the map\n", PARSE_ERROR);
+		print_and_exit("Error\nWalls don't close the map\n", PARSE_ERROR);
 	}
 	set_player_position(map);
 	if (!flood_fill(map))
