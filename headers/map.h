@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:13:19 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/28 18:00:16 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:17:15 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,22 @@
 # define C_COLLECTIBLE 'C'
 # define C_PLAYER 'P'
 
+// only used in flood_fill
+typedef struct s_grid
+{
+	int		**grid;
+	int		width;
+	int		height;
+
+}			t_grid;
+
 typedef struct s_player
 {
 	int			x;
 	int			y;
+	bool		on_exit;
+	int			moves;
+	int			collectibles;
 }				t_player;
 
 typedef struct s_map
@@ -36,6 +48,7 @@ typedef struct s_map
 	char		**c_grid;
 	t_tile		**grid; // Defined in ASSETS_H
 	t_player	player;
+	int			total_collectibles;
 	int			width;
 	int			height;
 }				t_map;

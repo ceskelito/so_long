@@ -1,10 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libmlx_data.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/05 12:29:45 by rceschel          #+#    #+#             */
+/*   Updated: 2025/08/05 12:30:50 by rceschel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx.h"
 #include "mlx_data.h"
 #include <stdlib.h>
 
-t_data data_init(void *mlx_ptr, int w_l, int w_h, char *w_name)
+#ifndef MLX_ERROR
+# define MLX_ERROR 1
+#endif
+
+t_data	data_init(void *mlx_ptr, int w_l, int w_h, char *w_name)
 {
-	t_data data;
+	t_data	data;
 
 	if (mlx_ptr)
 		data.mlx = mlx_ptr;
@@ -16,7 +32,60 @@ t_data data_init(void *mlx_ptr, int w_l, int w_h, char *w_name)
 	if (!data.win)
 	{
 		free(data.mlx);
-	 	exit(MLX_ERROR);
+		exit(MLX_ERROR);
 	}
 	return (data);
+}
+
+int	img_get_offset(t_data_img *img, int x, int y)
+{
+	if (!img)
+		exit(MLX_ERROR);
+	return (y * img->line_len + x * (img->bpp / 8));
+}
+
+void	img_put_pixel(t_data_img *img, int x, int y, int color)
+{
+	char	*dest;
+
+	if (!img || !img->addr)
+		exit(MLX_ERROR);
+	dest = img->addr + img_get_offset(img, x, y);
+	if (!dest)
+		exit(MLX_ERROR);
+	*(unsigned int *)dest = color;
+}
+
+void	img_create(void *mlx, t_data_img *img, int img_width, int img_height)
+{
+	if (!mlx || !img)
+		exit(MLX_ERROR);
+	img->img = mlx_new_image(mlx, img_width, img_height);
+	if (!img->img)
+		exit(MLX_ERROR);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len,
+			&img->endian);
+	if (!img->addr)
+		exit(MLX_ERROR);
+	img->width = img_width;
+	img->height = img_height;
+}
+
+void	img_set_background(t_data_img *img, int color)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < img->height)
+	{
+		x = 0;
+		while (x < img->width)
+		{
+			img_put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }

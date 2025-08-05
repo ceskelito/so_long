@@ -2,9 +2,12 @@
 *.o
 *.ase
 *.png
+
 .continue/
 .vscode/
 bin/
 build/
+maps/
+
 tags
 valout*

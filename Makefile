@@ -28,7 +28,7 @@ LIBRARIES = $(MLX_DATA_PATH)/$(MLX_DATA_LIB) \
 			$(LIBFT_PATH)/libft.a
 
 # Project files
-SRCS_NAMES = assets_checker.c flood_fill.c free_utils.c main.c map_parser.c map_parser_2.c img_put.c utils.c
+SRCS_NAMES = assets_checker.c flood_fill.c main.c map_parser.c map_parser_2.c map_helper_functions.c movement.c utils.c
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 
@@ -75,9 +75,6 @@ $(LIBFT_PATH)/libft.a: $(LIBFT_OBJS)
 $(LIBFT_OBJS): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_PATH)
 
-$(MLX_PATH)/libmlx.a:
-	$(MAKE) -C $(MLX_PATH)
-
 # ─── ────────────────────────────── ─── #
 # === CLEANINGS AND RECOMPILITATIONS === #
 # ─── ────────────────────────────── ─── #
@@ -93,13 +90,11 @@ re: fclean all
 
 # Project and External Libraries
 deepclean: clean
-	$(MAKE) clean -C $(MLX_PATH)
 	$(MAKE) clean -C $(MLX_DATA_PATH)
 	$(MAKE) clean -C $(COLORS_PATH)
 	$(MAKE) clean -C $(LIBFT_PATH)
 
 deepfclean: fclean		
-	$(MAKE) clean -C  $(MLX_PATH)
 	$(MAKE) fclean -C $(MLX_DATA_PATH)
 	$(MAKE) fclean -C $(COLORS_PATH)
 	$(MAKE) fclean -C $(LIBFT_PATH)

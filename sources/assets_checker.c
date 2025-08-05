@@ -6,16 +6,17 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:32:39 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/29 18:15:25 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:17:40 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assets.h"
-#include "libft.h"
-#include "mlx.h"
-#include "utils.h"
 #include <stdbool.h>
 #include <stddef.h>
+
+#include "assets.h"
+#include "utils.h"
+#include "libft.h"
+#include "mlx.h"
 
 static void	free_path_array(char *path[])
 {

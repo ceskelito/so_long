@@ -6,16 +6,16 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:23:43 by rceschel          #+#    #+#             */
-/*   Updated: 2025/07/29 17:10:32 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:03:47 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdbool.h>
+
 #include "errors.h"
-#include "libft.h"
 #include "map.h"
 #include "utils.h"
-#include <fcntl.h>
-#include <stdbool.h>
+#include "libft.h"
 
 void	set_player_position(t_map *map)
 {
@@ -32,7 +32,7 @@ void	set_player_position(t_map *map)
 			{
 				map->player.x = j;
 				map->player.y = i;
-				return;
+				return ;
 			}
 			j++;
 		}
@@ -40,7 +40,8 @@ void	set_player_position(t_map *map)
 	}
 }
 
-static bool	check_symbols_count(t_tile **grid)
+// Check the presece of Exit, Player and Collectibles (and the quantity)
+static bool	check_symbols_count(t_tile **grid, int *total_collectibles)
 {
 	int	i;
 	int	j;
@@ -65,6 +66,7 @@ static bool	check_symbols_count(t_tile **grid)
 	}
 	if (count[T_PLAYER] != 1 || count[T_EXIT] != 1 || count[T_COLLECTIBLE] < 1)
 		return (false);
+	*total_collectibles = count[T_COLLECTIBLE];
 	return (true);
 }
 
@@ -93,7 +95,7 @@ bool	check_wall_enclosure(t_map *map)
 
 void	continue_map_checking(t_map *map)
 {
-	if (!check_symbols_count(map->grid))
+	if (!check_symbols_count(map->grid, &map->total_collectibles))
 	{
 		free_grid((void **)map->c_grid);
 		free_grid((void **)map->grid);
@@ -104,7 +106,14 @@ void	continue_map_checking(t_map *map)
 	{
 		free_grid((void **)map->c_grid);
 		free_grid((void **)map->grid);
-		print_and_exit("Error\nWalls dont't close the map\n", PARSE_ERROR);
+		print_and_exit("Error\nWalls don't close the map\n", PARSE_ERROR);
 	}
 	set_player_position(map);
+	if (!flood_fill(map))
+	{
+		free_grid((void **)map->c_grid);
+		free_grid((void **)map->grid);
+		print_and_exit("Error\nNo path in the map leads to the exit\n",
+			PARSE_ERROR);
+	}
 }
