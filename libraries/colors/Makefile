@@ -1,28 +1,30 @@
-include../ mk.var /
-	Makefile
+include ../mk.var/Makefile
 
-		CC = gcc AR = ar rcs RM = rm - f CFLAGS = -Wall - Wextra -
-	Werror
+CC      = gcc
+AR      = ar rcs
+RM      = rm -f
+CFLAGS  = -Wall -Wextra -Werror
 
-		NAME = $(COLORS_LIB) SRCS = $(COLORS_SRCS) OBJS = $(COLORS_OBJS)
+NAME	= $(COLORS_LIB)
+SRCS	= $(COLORS_SRCS) 
+OBJS	= $(COLORS_OBJS)
 
-														INCLUDES =
-															-I../../ minilibx -
-			linux
+INCLUDES	= -I../../minilibx-linux
 
-					all : $(NAME)
+all : $(NAME)
 
-							%.o : %.c $(CC) $(CFLAGS) $(INCLUDES) -
-			c $ <
-		-o $ @
+%.o : %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-		$(NAME)
-	: $(OBJS) $(AR) $ @$ ^
+$(NAME) : $(OBJS)
+	$(AR) $@ $^ 
 
-	clean : $(RM) $(OBJS)
+clean:
+	$(RM) $(OBJS)
 
-				fclean : clean $(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
-								re : fclean all
+re: fclean all
 
-										.PHONY : clean fclean all
+.PHONY: clean fclean all
