@@ -75,9 +75,6 @@ $(LIBFT_PATH)/libft.a: $(LIBFT_OBJS)
 $(LIBFT_OBJS): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_PATH)
 
-$(MLX_PATH)/libmlx.a:
-	$(MAKE) -C $(MLX_PATH)
-
 # ─── ────────────────────────────── ─── #
 # === CLEANINGS AND RECOMPILITATIONS === #
 # ─── ────────────────────────────── ─── #
@@ -93,13 +90,11 @@ re: fclean all
 
 # Project and External Libraries
 deepclean: clean
-	$(MAKE) clean -C $(MLX_PATH)
 	$(MAKE) clean -C $(MLX_DATA_PATH)
 	$(MAKE) clean -C $(COLORS_PATH)
 	$(MAKE) clean -C $(LIBFT_PATH)
 
 deepfclean: fclean		
-	$(MAKE) clean -C  $(MLX_PATH)
 	$(MAKE) fclean -C $(MLX_DATA_PATH)
 	$(MAKE) fclean -C $(COLORS_PATH)
 	$(MAKE) fclean -C $(LIBFT_PATH)

@@ -8,8 +8,6 @@
 bin/
 build/
 maps/
-#minilibx-linux/
-LIBFT-EXTENSIBLE/
 
 tags
 valout*
