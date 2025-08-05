@@ -1,6 +1,3 @@
 [submodule "libft"]
 	path = LIBFT_EXTENSIBLE
 	url = git@github.com:ceskelito/LIBFT_EXTENSIBLE
-[submodule "minilibx-linux"]
-	path = minilibx-linux
-	url = git@github.com:42paris/minilibx-linux

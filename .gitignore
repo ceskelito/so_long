@@ -2,9 +2,14 @@
 *.o
 *.ase
 *.png
+
 .continue/
 .vscode/
 bin/
 build/
+maps/
+minilibx-linux/
+LIBFT-EXTENSIBLE/
+
 tags
 valout*
