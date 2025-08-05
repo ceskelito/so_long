@@ -1,6 +1,6 @@
 MLX_DATA_LIB	= libmlx_data.a
-MLX_DATA_SRCS	= libmlx_data.c libmlx_img.c
-MLX_DATA_OBJS	= libmlx_data.o libmlx_img.o
+MLX_DATA_SRCS	= libmlx_data.c img_4_byte.c
+MLX_DATA_OBJS	= libmlx_data.o img_4_byte.o
 
 COLORS_LIB		= libcolors.a
 COLORS_SRCS		= colors.c

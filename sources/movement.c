@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 11:07:30 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 12:20:49 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 19:01:18 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,50 @@ static void	render_one(t_data *data, void *img, int x, int y)
 		* ASSETS_SIZE);
 }
 
+static void render_player(t_map *map, int prev_x, int prev_y)
+{
+	void *player_img;
+	void *prev_pos_image;
+
+	prev_pos_image = map->asset[map->grid[prev_x][prev_y]];
+	player_img = get_img_w_transparency(
+			map->asset[T_PLAYER],
+			map->asset[map->grid[map->player.y][map->player.x]],
+			ASSETS_SIZE, ASSETS_SIZE,
+			CHROMA_KEY);
+	render_one(map->data,
+			prev_pos_image,
+			prev_x, prev_y);
+	render_one(map->data,
+			player_img,
+			map->player.x, map->player.y);
+}
+
+static void clone_player(t_player *dest, t_player *src)
+{
+	dest->x = src->x;
+	dest->y = src->y;
+	dest->on_exit = src->on_exit;
+	dest->moves = src->moves;
+	dest->collectibles = src->collectibles;
+}
+
 int	move_player(t_map *map, int x, int y)
 {
-	int	new_x;
-	int	new_y;
+	t_player	new_p;
 
-	new_x = map->player.x + x;
-	new_y = map->player.y + y;
-	if (map->grid[new_y][new_x] == T_WALL)
+	clone_player(&new_p, &map->player);
+	new_p.x += x;
+	new_p.y += y;
+	new_p.moves++;
+	if (map->grid[new_p.y][new_p.x] == T_WALL)
 		return (0);
+	if (map->grid[new_p.y][new_p.x] == T_COLLECTIBLE)
+		new_p.collectibles++;
+	clone_player(&map->player, &new_p);
+	render_player(map, map->player.x - x, map->player.y - y);
 	if (map->grid[map->player.y][map->player.x] == T_EXIT
 		&& map->player.collectibles == map->total_collectibles)
 		return (1);
-	if (map->grid[new_y][new_x] == T_COLLECTIBLE)
-		map->player.collectibles++;
-	map->player.x += x;
-	map->player.y += y;
-	map->player.moves++;
-	render_one(map->data, map->asset[T_PLAYER], map->player.x, map->player.y);
-	render_one(map->data, map->asset[T_FLOOR], map->player.x - x, map->player.y
-		- y);
-	if (map->grid[map->player.y - y][map->player.x - x] == T_EXIT)
-		render_one(map->data, map->asset[T_EXIT], map->player.x - x,
-			map->player.y - y);
 	return (0);
 }

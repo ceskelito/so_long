@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 12:18:42 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 19:06:37 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 void	render_all(t_data *data, t_map *map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -31,8 +31,11 @@ void	render_all(t_data *data, t_map *map)
 	{
 		while (j < map->height)
 		{
-			mlx_put_image_to_window(data->mlx, data->win,
-				map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
+			if (map->grid[i][j] == T_PLAYER)
+				move_player(map, 0 ,0);
+			else
+				mlx_put_image_to_window(data->mlx, data->win,
+					map->asset[map->grid[j][i]], i * ASSETS_SIZE, j * ASSETS_SIZE);
 			j++;
 		}
 		i++;
