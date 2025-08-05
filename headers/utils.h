@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 16:55:39 by rceschel          #+#    #+#             */
 /*   Updated: 2025/08/05 12:16:24 by rceschel         ###   ########.fr       */

@@ -18,6 +18,7 @@
 # include "errors.h"
 # include "map.h"
 # include "utils.h"
+# include "mlx.h"
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
