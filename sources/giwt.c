@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 15:09:23 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 18:52:17 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 19:19:11 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void *get_img_w_transparency(void *foreground, void *background,
 	t_data_img	back;
 
 	ft_memset(&front, 0, sizeof(t_data_img));
+	front.img = ft_calloc(1, sizeof(t_data_img));
 	ft_memcpy(front.img, foreground, sizeof(foreground));
 	ft_memset(&back, 0,	sizeof(t_data_img));
+	back.img = ft_calloc(1, sizeof(t_data_img));
 	ft_memcpy(back.img, background, sizeof(background));
 	if (!front.img || !back.img)
 		return (NULL);
