@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 15:45:09 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 11:59:02 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static void	free_grid(t_grid *g)
 
 bool	flood_fill(t_map *map)
 {
-	int	i;
+	int												i;
+	t_grid __attribute__	((cleanup(free_grid)))	g;
 
-	t_grid __attribute__((cleanup(free_grid))) g;
 	ft_memset(&g, 0, sizeof(t_grid));
 	g.height = map->height;
 	g.width = map->width;

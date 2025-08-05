@@ -6,7 +6,7 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:23:43 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 18:31:24 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 11:56:46 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "utils.h"
 #include <fcntl.h>
 #include <stdbool.h>
-
-bool		flood_fill(t_map *map);
 
 void	set_player_position(t_map *map)
 {
@@ -42,6 +40,7 @@ void	set_player_position(t_map *map)
 	}
 }
 
+// Check the presece of Exit, Player and Collectibles (and the quantity)
 static bool	check_symbols_count(t_tile **grid, int *total_collectibles)
 {
 	int	i;

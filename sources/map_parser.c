@@ -6,44 +6,16 @@
 /*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/04 18:30:51 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/05 11:56:34 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <fcntl.h>
+#include <stdbool.h>
 
 #include "libft.h"
 #include "so_long.h"
 #include "utils.h"
-#include <fcntl.h>
-#include <stdbool.h>
-
-bool			measurements_helper(char *row, t_map *map, int fd);
-bool			translate_helper(char **c_grid, t_tile **tile_grid, int i,
-					int j);
-void			continue_map_checking(t_map *map);
-bool			flood_fill(t_map *map);
-
-// Return the content of the file as a string array.
-static char	**extract_map(char *filename, int height)
-{
-	int		fd;
-	int		i;
-	char	**grid;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	grid = ft_calloc(height + 1, sizeof(char *));
-	i = 0;
-	while (i < height)
-	{
-		grid[i] = get_next_line(fd);
-		if (!grid[i])
-			return (NULL);
-		i++;
-	}
-	grid[height] = NULL;
-	return (grid);
-}
 
 // Check if the map is a rectangle, set map width/height
 // Width = len(row) - 1; beacuse row has '\n' as last character
@@ -54,7 +26,10 @@ static bool	check_and_set_measurements(t_map *map, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (false);
+	{
+		ft_printf("Error:\n%s named \"%s\"\n", strerror(errno), filename);
+		exit(errno);
+	}
 	row = get_next_line(fd);
 	map->width = ft_strlen(row) - 1;
 	map->height = 0;
@@ -69,7 +44,34 @@ static bool	check_and_set_measurements(t_map *map, char *filename)
 	return (true);
 }
 
-// Translate the map from char to t_tile matrix (usefull ongoing in the program)
+// Return the content of the file as a string array.
+static char	**extract_map(char *filename, int height)
+{
+	int		fd;
+	int		i;
+	char	**grid;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error:\n%s named \"%s\"\n", strerror(errno), filename);
+		exit(errno);
+	}
+	grid = ft_calloc(height + 1, sizeof(char *));
+	i = 0;
+	while (i < height)
+	{
+		grid[i] = get_next_line(fd);
+		if (!grid[i])
+			return (NULL);
+		i++;
+	}
+	grid[height] = NULL;
+	return (grid);
+}
+
+// Translate the map from char to t_tile (enum) matrix.
+// This will usefull ongoing in the program
 static t_tile	**translate_map(char **c_grid, int width, int height)
 {
 	int		i;
@@ -95,6 +97,7 @@ static t_tile	**translate_map(char **c_grid, int width, int height)
 	return (tile_grid);
 }
 
+// Return the map struct
 t_map	get_map(char *filename)
 {
 	t_map	map;
@@ -109,9 +112,6 @@ t_map	get_map(char *filename)
 			/ ASSETS_SIZE, WINDOW_HEIGHT / ASSETS_SIZE);
 		exit(MAP_FORMAT_ERROR);
 	}
-	if (!map.c_grid)
-		print_and_exit("Error\nFailed in retrieving the map from file\n",
-			PARSE_ERROR);
 	map.c_grid = extract_map(filename, map.height);
 	map.grid = translate_map(map.c_grid, map.width, map.height);
 	if (!map.grid)
