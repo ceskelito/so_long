@@ -1,13 +1,9 @@
-include ../mk.var/Makefile
+include mk.var/Makefile
 
 CC      = gcc
 AR      = ar rcs
 RM      = rm -f
 CFLAGS  = -Wall -Wextra -Werror
-
-NAME = $(MLX_DATA_LIB)
-SRCS = $(MLX_DATA_SRCS)
-OBJS = $(MLX_DATA_OBJS)
 
 INCLUDES	= -I../../minilibx-linux
 

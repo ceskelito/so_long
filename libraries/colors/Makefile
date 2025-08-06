@@ -1,13 +1,9 @@
-include ../mk.var/Makefile
+include mk.var/Makefile
 
 CC      = gcc
 AR      = ar rcs
 RM      = rm -f
 CFLAGS  = -Wall -Wextra -Werror
-
-NAME	= $(COLORS_LIB)
-SRCS	= $(COLORS_SRCS) 
-OBJS	= $(COLORS_OBJS)
 
 INCLUDES	= -I../../minilibx-linux
 
