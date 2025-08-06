@@ -1,84 +1,116 @@
-include libraries/mk.var/Makefile
+# ──────────────────────── #
+#    EXTERNAL INCLUDES     #
+# ──────────────────────── #
+include libraries/mk.var.export/Makefile
 include LIBFT_EXTENSIBLE/mk.var.export/Makefile
 
+# ──────────────────────── #
+#      PROJECT CONFIG      #
+# ──────────────────────── #
+NAME       = bin/so_long
+CC         = gcc
+CFLAGS     = -Wall -Wextra -Werror -g
+RM         = rm -f
+MKDIR      = mkdir -p
 
-NAME = bin/so_long
+# ──────────────────────── #
+#        DIRECTORIES       #
+# ──────────────────────── #
+BUILD_DIR  = build
+SRCS_DIR   = sources
+BIN_DIR    = bin
+LIBFT_PATH = LIBFT_EXTENSIBLE
+MLX_PATH   = minilibx-linux
 
-# Compiler and system directives and flags
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
-RM		= rm -f
-MKDIR	= mkdir -p
+# ──────────────────────── #
+#      SOURCE FILES        #
+# ──────────────────────── #
+SRCS_NAMES = assets_checker.c flood_fill.c main.c map_parser.c map_parser_2.c \
+             map_helper_functions.c movement.c giwt.c utils.c
+OBJS       = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
+SRCS       = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 
-# Build directories
-BUILD_DIR	= build
-SRCS_DIR	= sources
-BIN_DIR		= bin
+# ──────────────────────── #
+#     EXTERNAL LIBRARIES   #
+# ──────────────────────── #
+MLX_LIB    = $(MLX_PATH)/libmlx.a
+LIBRARIES  = $(MLXD_LIB) \
+             $(COLORS_LIB) \
+             $(LIBFT_PATH)/libft.a \
 
-# External libraries paths
-MLX_DATA_PATH	= libraries/datalib
-COLORS_PATH		= libraries/colors
-MLX_PATH		= minilibx-linux
-LIBFT_PATH		= LIBFT_EXTENSIBLE
+# ──────────────────────── #
+#      INCLUDE & LINK      #
+# ──────────────────────── #
+INC_PATHS  = -I$(MLX_PATH) -I$(MLXD_PATH) -I$(COLORS_PATH) \
+             -I$(LIBFT_PATH)/headers -Iheaders
 
-# External libraries names (for dependencies)
-LIBRARIES = $(MLX_DATA_PATH)/$(MLX_DATA_LIB) \
-			$(COLORS_PATH)/$(COLORS_LIB) \
-			$(MLX_PATH)/libmlx.a \
-			$(LIBFT_PATH)/libft.a
+LIB_PATHS  = -L$(MLX_PATH) -L$(MLXD_PATH) -L$(COLORS_PATH) \
+             -L$(LIBFT_PATH)
 
-# Project files
-SRCS_NAMES = assets_checker.c flood_fill.c main.c map_parser.c map_parser_2.c map_helper_functions.c movement.c utils.c
-OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_NAMES:%.c=%.o))
-SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
+LIB_NAMES  = -l$(MLXD_LIB) -l$(COLORS_LIB) -lmlx -lft -lm -lX11 -lXext
 
-# Include paths and link flags
-INC_PATHS = -I$(MLX_PATH) -I$(MLX_DATA_PATH) -I$(COLORS_PATH) \
-			-I$(LIBFT_PATH)/headers -Iheaders
+# ──────────────────────── #
+#        ANSI COLORS       #
+# ──────────────────────── #
+RED        := \033[0;31m
+GREEN      := \033[0;32m
+BLUE       := \033[0;34m
+RESET      := \033[0m
 
-LIB_PATHS = -L$(MLX_PATH) -L$(MLX_DATA_PATH) -L$(COLORS_PATH) \
-			-L$(LIBFT_PATH)
-
-LIB_NAMES = -lmlx_data -lcolors -lmlx -lft -lm -lX11 -lXext
-
-# ─── ────────── ─── #
-# === MAIN RULES === #
-# ─── ────────── ─── #
-
+# ──────────────────────── #
+#       MAIN RULES         #
+# ──────────────────────── #
 all: $(NAME)
 
 $(BUILD_DIR)/%.o: $(SRCS_DIR)/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
+	@printf "$(GREEN)Compiling $(BLUE)$<$(RESET)\n"
 
-$(NAME):  $(OBJS)  $(LIBRARIES) | $(BIN_DIR)
-	$(CC) $(OBJS) $(LIB_PATHS) $(LIB_NAMES) -no-pie -o $(NAME)
+$(NAME): $(OBJS) $(LIBRARIES) check_mlx | $(BIN_DIR)
+	@$(CC) $(OBJS) $(LIB_PATHS) $(LIB_NAMES) -no-pie -o $(NAME)
+	@printf "$(GREEN)Linking $(BLUE)$(NAME)$(RESET)\n"
 
 $(BIN_DIR) $(BUILD_DIR):
 	$(MKDIR) $@
 
-# ─── ────────────────────────────── ─── #
-# === EXTERNAL LIBRARIES COMPILATION === #
-# ─── ────────────────────────────── ─── #
+# ──────────────────────── #
+#    LIBRARY COMPILATION   #
+# ──────────────────────── #
+# MLX Data Library
+$(MLXD_LIB): $(MLXD_OBJS)
 
-$(MLX_DATA_PATH)/$(MLX_DATA_LIB): $(MLX_DATA_PATH)/$(MLX_DATA_OBJS)
+$(MLXD_OBJS): $(MLXD_SRCS)
+	$(MAKE) -C $(MLXD_PATH)
 
-$(MLX_DATA_PATH)/$(MLX_DATA_OBJS): $(MLX_DATA_PATH)/$(MLX_DATA_SRCS)
-	$(MAKE) -C $(MLX_DATA_PATH)
+# Colors Library
+$(COLORS_LIB): $(COLORS_OBJS)
 
-$(COLORS_PATH)/$(COLORS_LIB): $(COLORS_PATH)/$(COLORS_OBJS)
-
-$(COLORS_PATH)/$(COLORS_OBJS): $(COLORS_PATH)/$(COLORS_SRCS)
+$(COLORS_OBJS): $(COLORS_SRCS)
 	$(MAKE) -C $(COLORS_PATH)
 
+# Libft Library
 $(LIBFT_PATH)/libft.a: $(LIBFT_OBJS)
 
 $(LIBFT_OBJS): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_PATH)
 
-# ─── ────────────────────────────── ─── #
-# === CLEANINGS AND RECOMPILITATIONS === #
-# ─── ────────────────────────────── ─── #
 
+# ──────────────────────── #
+#    MLX LIBRARY CHECK     #	
+# ──────────────────────── #
+
+check_mlx:
+	@if [ ! -f "$(MLX_LIB)" ]; then \
+		echo "$(RED)\nError: The minilibx-linux library is not compiled.$(RESET)"; \
+		echo "$(BLUE)Please compile it manually by running $(GREEN)'make -C minilibx-linux'$(BLUE),"; \
+		echo "or running $(GREEN)'make'$(BLUE) in the $(GREEN)minilibx$(BLUE) directory.$(RESET)"; \
+		exit 1; \
+	fi
+	@printf "$(GREEN)\n- Minilibx-linux library is compiled. -$(RESET)\n"
+
+# ──────────────────────── #
+#      CLEANING RULES      #
+# ──────────────────────── #
 # Project Only
 clean:
 	$(RM) $(OBJS)
@@ -90,16 +122,16 @@ re: fclean all
 
 # Project and External Libraries
 deepclean: clean
-	$(MAKE) clean -C $(MLX_DATA_PATH)
+	$(MAKE) clean -C $(MLXD_PATH)
 	$(MAKE) clean -C $(COLORS_PATH)
 	$(MAKE) clean -C $(LIBFT_PATH)
 
-deepfclean: fclean		
-	$(MAKE) fclean -C $(MLX_DATA_PATH)
+deepfclean: fclean
+	$(MAKE) fclean -C $(MLXD_PATH)
 	$(MAKE) fclean -C $(COLORS_PATH)
 	$(MAKE) fclean -C $(LIBFT_PATH)
 
 deepre: deepfclean all
 
-# === PHONY === #
-.PHONY: all re clean fclean deepre deepclean deepfclean
+# ──────────────────────── #
+.PHONY: all re clean fclean deepre deepclean deepfclean check_mlx
