@@ -49,7 +49,10 @@ static void	set_path_array(char *path[])
 	path[T_FLOOR] = ft_strdup(PATH_FLOOR);
 	path[T_WALL] = ft_strdup(PATH_WALL);
 	path[T_EXIT] = ft_strdup(PATH_EXIT);
-	path[T_PLAYER] = ft_strdup(PATH_PLAYER);
+	path[T_PLAYER_UP] = ft_strdup(PATH_PLAYER_UP);
+	path[T_PLAYER_DOWN] = ft_strdup(PATH_PLAYER_DOWN);
+	path[T_PLAYER_LEFT] = ft_strdup(PATH_PLAYER_LEFT);
+	path[T_PLAYER_RIGHT] = ft_strdup(PATH_PLAYER_RIGHT);
 	path[T_ENEMY] = ft_strdup(PATH_ENEMY);
 	path[T_COLLECTIBLE] = ft_strdup(PATH_COLLECTIBLE);
 	path[ASSETS_COUNT] = NULL;
@@ -70,7 +73,7 @@ bool	set_assets(void *mlx_ptr, void *asset[])
 		asset[i] = mlx_xpm_file_to_image(mlx_ptr, path[i], &w, &h);
 		if (w != ASSETS_SIZE || h != ASSETS_SIZE || !asset[i])
 		{
-			ft_printf("Error\nFailed in retrieving the assets\n");
+			ft_printf("Error\nFailed in retrieving the assets n. %i\n", i);
 			free_path_array(path);
 			return (false);
 		}

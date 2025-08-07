@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:23:43 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 13:03:47 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/07 18:38:40 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_player_position(t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
-			if (map->grid[i][j] == T_PLAYER)
+			if (map->grid[i][j] == T_PLAYER_STD)
 			{
 				map->player.x = j;
 				map->player.y = i;
@@ -49,10 +49,7 @@ static bool	check_symbols_count(t_tile **grid, int *total_collectibles)
 
 	i = 0;
 	while (i < ASSETS_COUNT)
-	{
-		count[i] = 0;
-		i++;
-	}
+		count[i++] = 0;
 	i = 0;
 	while (grid[i])
 	{
@@ -64,7 +61,8 @@ static bool	check_symbols_count(t_tile **grid, int *total_collectibles)
 		}
 		i++;
 	}
-	if (count[T_PLAYER] != 1 || count[T_EXIT] != 1 || count[T_COLLECTIBLE] < 1)
+	if (count[T_PLAYER_STD] != 1 || count[T_EXIT] != 1
+		|| count[T_COLLECTIBLE] < 1)
 		return (false);
 	*total_collectibles = count[T_COLLECTIBLE];
 	return (true);

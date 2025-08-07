@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_helper_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:30:22 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 12:19:32 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/07 18:38:40 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	translate_helper(char **c_grid, t_tile **tile_grid, int i, int j)
 	else if (c_grid[i][j] == C_WALL)
 		tile_grid[i][j] = T_WALL;
 	else if (c_grid[i][j] == C_PLAYER)
-		tile_grid[i][j] = T_PLAYER;
+		tile_grid[i][j] = T_PLAYER_STD;
 	else if (c_grid[i][j] == C_EXIT)
 		tile_grid[i][j] = T_EXIT;
 	else if (c_grid[i][j] == C_COLLECTIBLE)

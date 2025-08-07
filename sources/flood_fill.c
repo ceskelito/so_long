@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 12:17:51 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/07 18:40:51 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	flood_fill(t_map *map)
 	ft_memset(&g, 0, sizeof(t_grid));
 	g.height = map->height;
 	g.width = map->width;
-	g.grid = ft_calloc(map->height + 1, sizeof(int *));
+	g.grid = ft_calloc(map->height + 1, sizeof(t_tile *));
 	if (!g.grid)
 		return (false);
 	i = 0;

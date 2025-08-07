@@ -1,137 +1,199 @@
 /* XPM */
-static char *_f867db3fc184f0eceec7fbefc333a93fHodADqmXQOx0DKZ[] = {
+static char *upscaled_image[] = {
 /* columns rows colors chars-per-pixel */
-"128 128 3 1 ",
-"  c #421D17",
-". c #663931",
-"X c #9D4232",
+"128 128 65 1"
+"  c #4D2712"
+". c #4E2812"
+"X c #4F2D1A"
+"o c #502E1A"
+"O c #52311C"
+"+ c #5A371E"
+"@ c #5B381F"
+"# c #533421"
+"$ c #5C3C26"
+"% c #573E2E"
+"& c #5E3E29"
+"* c #5F402D"
+"= c #61422E"
+"- c #614431"
+"; c #634836"
+": c #644A38"
+"> c #5A4E42"
+", c #5E5246"
+"< c #5F5449"
+"1 c #62574C"
+"2 c #645A4F"
+"3 c #645C51"
+"4 c #676056"
+"5 c #696155"
+"6 c #676158"
+"7 c #6B655B"
+"8 c #6E685E"
+"9 c #716256"
+"0 c #6F6A61"
+"q c #726E64"
+"w c #777066"
+"e c #7A7267"
+"r c #757169"
+"t c #7A756A"
+"y c #7C776C"
+"u c #7C786B"
+"i c #7B786C"
+"p c #7C786C"
+"a c #7E7970"
+"s c #7F7C70"
+"d c #7E7C74"
+"f c #80796F"
+"g c #807A71"
+"h c #807C70"
+"j c #807E77"
+"k c #848277"
+"l c #858277"
+"z c #868477"
+"x c #828078"
+"c c #828079"
+"v c #868478"
+"b c #8A877A"
+"n c #8A887A"
+"m c #8B897D"
+"M c #8C897C"
+"N c #8B8880"
+"B c #8B8980"
+"V c #8D8B82"
+"C c #8F8C83"
+"Z c #918E85"
+"A c #95938B"
+"S c #97948C"
+"D c #9B978F"
+"F c #9C9991"
+"G c #A09C94"
 /* pixels */
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"  .............. XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ....................  ",
-"                                                                                                                                ",
-"                                                                                                                                ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"  XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXXXXXXXXXXXXXXXXXXXXXXXXX ............................. XXXXX  ",
-"                                                                                                                                ",
-"                                                                                                                                "
+"----------------**--------------------;;;;;;;;;;;;::::::::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;----------------------------"
+"----------------**--------------------;;;;;;;;;;;;::::::::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;----------------------------"
+"--BBBBBBBBBBllllVVBBVVVVVVVVVVBBBBBBBBllllllllllllllllllllllllllllllllllllllllllllllllllxxxxllllllllllllllllBBBBllllBBBBBBBBBB--"
+"--BBBBBBBBBBllllVVBBVVVVVVVVVVBBBBBBBBllllllllllllllllllllllllllllllllllllllllllllllllllxxxxllllllllllllllllBBBBllllBBBBBBBBBB--"
+"--BBBBBBllllllllVVVVVVVVVVVVVVBBBBBBBBllllllllllllllllllllllllllllllllllllllllllllllllllllxxllllllllllllllllBBBBllllllllBBBBBB--"
+"--BBBBBBllllllllVVVVVVVVVVVVVVBBBBBBBBllllllllllllllllllllllllllllllllllllllllllllllllllllxxllllllllllllllllBBBBllllllllBBBBBB--"
+"--BBBBllllllVVVVVVVVVVVVVVVVVVBBBBllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllBBBBllllllBBBB--"
+"--BBBBllllllVVVVVVVVVVVVVVVVVVBBBBllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllBBBBllllllBBBB--"
+"--BBllllVVllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllVVVVVVVVVVVVllllllxxllllllllllllllllBBBBllllBB--"
+"--BBllllVVllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllVVVVVVVVVVVVllllllxxllllllllllllllllBBBBllllBB--"
+"--BBllllVVllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllVVVVVVVVVVVVllllllxxllllllllllllllllBBBBllllBB--"
+"--BBllllVVllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllVVVVVVVVVVVVllllllxxllllllllllllllllBBBBllllBB--"
+"==BBVVllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllBBBBVVVVVVVVVVVVVVVVllllllllllllllllllllllllllllVVVVBB=="
+"==BBVVllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllBBBBVVVVVVVVVVVVVVVVllllllllllllllllllllllllllllVVVVBB=="
+"==VVVVllllllllllllllllllllllll333333333333333333337777777777777777777777777777777777777733337777llllllllllllllllllllllllVVVVVV$$"
+"==VVVVllllllllllllllllllllllll333333333333333333337777777777777777777777777777777777777733337777llllllllllllllllllllllllVVVVVV$$"
+"==VVVVllllllllllllllllllll<<<<$$$$$$$$$$$$&&&&&&&&******************&&&&&&&&&&&&&&&&$$$$$$$$$$$$2222llllllllllllllllllllVVVVVV&&"
+"==VVVVllllllllllllllllllll<<<<$$$$$$$$$$$$&&&&&&&&******************&&&&&&&&&&&&&&&&$$$$$$$$$$$$2222llllllllllllllllllllVVVVVV&&"
+"==VVVVllllllllllllllllllll<<<<$$$$$$$$$$$$&&&&&&&&******************&&&&&&&&&&&&&&&&$$$$$$$$$$$$2222llllllllllllllllllllVVVVVV&&"
+"==VVVVllllllllllllllllllll<<<<$$$$$$$$$$$$&&&&&&&&******************&&&&&&&&&&&&&&&&$$$$$$$$$$$$2222llllllllllllllllllllVVVVVV&&"
+"==VVVVllllllllllllllll<<<<++++99999999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww7777999999999999++++<<<<llllllllllllllllVVVVVV&&"
+"==VVVVllllllllllllllll<<<<++++99999999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww7777999999999999++++<<<<llllllllllllllllVVVVVV&&"
+"==ZZVVllllllllllllllll++++99999999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww99995555++++llllllllllllllllZZZZZZ&&"
+"==ZZVVllllllllllllllll++++99999999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww99995555++++llllllllllllllllZZZZZZ&&"
+"==ZZVVllllllllllllllll++++99999999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww99995555++++llzzllllllllllllZZZZZZ&&"
+"==ZZVVllllllllllllllll++++99999999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww99995555++++llzzllllllllllllZZZZZZ&&"
+"==AAZZllllzzzzzzzzzzzz++++9999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwttttttttwwwwwwwwwwwwwwwwwwwwwwwwwwww++++zzzzllllllllllllAAAAAA&&"
+"==AAZZllllzzzzzzzzzzzz++++9999wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwttttttttwwwwwwwwwwwwwwwwwwwwwwwwwwww++++zzzzllllllllllllAAAAAA&&"
+"--AAZZzzzzzzzzzzzzvvvv++++7777eeeewwwwwwwwwwwwwwwwttttttttttttttttttttttttttwwwwwwwwwwwwwwwwwwwwwwww++++zzzzzzzzzzzzzzzzAAAAAA&&"
+"--AAZZzzzzzzzzzzzzvvvv++++7777eeeewwwwwwwwwwwwwwwwttttttttttttttttttttttttttwwwwwwwwwwwwwwwwwwwwwwww++++zzzzzzzzzzzzzzzzAAAAAA&&"
+"==AAZZvvvvvvvvvvvvvvvv++++ttttyyyyyyyyyyyywwwwwwwwttttttuuuuuuuuttttyyyyttttttttwwwwwwwwwwwwwwwwwwww++++vvvvvvvvzzzzzzzzAAAAAA&&"
+"==AAZZvvvvvvvvvvvvvvvv++++ttttyyyyyyyyyyyywwwwwwwwttttttuuuuuuuuttttyyyyttttttttwwwwwwwwwwwwwwwwwwww++++vvvvvvvvzzzzzzzzAAAAAA&&"
+"==AAZZvvvvvvvvvvvvvvvv++++ttttyyyyyyyyyyyywwwwwwwwttttttuuyyyyyyyyyyppyyyyttttttwweeeeeewwwwwwwwwwww++++vvvvvvvvzzzzzzzzAAAAAA&&"
+"==AAZZvvvvvvvvvvvvvvvv++++ttttyyyyyyyyyyyywwwwwwwwttttttuuyyyyyyyyyyppyyyyttttttwweeeeeewwwwwwwwwwww++++vvvvvvvvzzzzzzzzAAAAAA&&"
+"==AAZZvvvvvvvvvvvvvvvv++++yyyyyyyyppppppppttttttttyyuuuuuuuuppppppppppppttttttttwwwwwweetttteeeeeeee++++llvvvvvvvvvvvvvvAAAAAA&&"
+"==AAZZvvvvvvvvvvvvvvvv++++yyyyyyyyppppppppttttttttyyuuuuuuuuppppppppppppttttttttwwwwwweetttteeeeeeee++++llvvvvvvvvvvvvvvAAAAAA&&"
+"==AAAAvvvvvvvvvvvvvvvv++++yyyyppppppppyyyyppppppppppppppppppaappppppppppppppyyyyuuttttttttttttttwwww++++llllvvvvvvvvvvvvAAAAAA&&"
+"==AAAAvvvvvvvvvvvvvvvv++++yyyyppppppppyyyyppppppppppppppppppaappppppppppppppyyyyuuttttttttttttttwwww++++llllvvvvvvvvvvvvAAAAAA&&"
+"==DDSSvvvvvvvvvvvvvvvv++++aappppppppppppppppppppppppppppppppppppffffppppppppppppuuuuuuuutttteeeeeeee++++bbbbbbbbvvvvvvvvDDDDDD&&"
+"==DDSSvvvvvvvvvvvvvvvv++++aappppppppppppppppppppppppppppppppppppffffppppppppppppuuuuuuuutttteeeeeeee++++bbbbbbbbvvvvvvvvDDDDDD&&"
+"==DDSSvvvvvvvvvvvvvvvv++++ppppppppppaaaaaappppppppppppppppppppppffffppppppppppppuuuuuuuutttteeeeeeee++++vvvvbbbbvvvvvvvvDDDDDD&&"
+"==DDSSvvvvvvvvvvvvvvvv++++ppppppppppaaaaaappppppppppppppppppppppffffppppppppppppuuuuuuuutttteeeeeeee++++vvvvbbbbvvvvvvvvDDDDDD&&"
+"**FFSSvvvvvvvvvvbbbbbb++++ppppppppppaaaappppppppppppppppppppggggppffppppppppppppaaaapppptttteeeeyyyy@@@@VVVVbbbbbbbbvvvvFFFFFF&&"
+"**FFSSvvvvvvvvvvbbbbbb++++ppppppppppaaaappppppppppppppppppppggggppffppppppppppppaaaapppptttteeeeyyyy@@@@VVVVbbbbbbbbvvvvFFFFFF&&"
+"**FFDDmmmmbbbbbbbbbbbb@@@@yyyyppppaaaaaapp77777777ppffppggggggggggggggggaaaaaaaaaaaaaaaappppttttyyyy@@@@VVVVbbbbbbbbbbbbFFFFFF&&"
+"**FFDDmmmmbbbbbbbbbbbb@@@@yyyyppppaaaaaapp77777777ppffppggggggggggggggggaaaaaaaaaaaaaaaappppttttyyyy@@@@VVVVbbbbbbbbbbbbFFFFFF&&"
+"**FFDDmmmmbbbbbbbbbbbb@@@@yyyyppaaaaaaaapp77777777ppggggggggggggggggggggggggaaaaaaaaaaaappppttttyyyy@@@@VVVVbbbbbbbbbbbbFFFFFF&&"
+"**FFDDmmmmbbbbbbbbbbbb@@@@yyyyppaaaaaaaapp77777777ppggggggggggggggggggggggggaaaaaaaaaaaappppttttyyyy@@@@VVVVbbbbbbbbbbbbFFFFFF&&"
+"==FFDDCCCCCCCCbbbbbbbbbbbb@@@@pppppppp77777777777777777777777777ggggaaaaaaaaaaaaaaaaaaaapppppppp@@@@VVVVVVVVbbbbbbbbbbbbFFFFFF&&"
+"==FFDDCCCCCCCCbbbbbbbbbbbb@@@@pppppppp77777777777777777777777777ggggaaaaaaaaaaaaaaaaaaaapppppppp@@@@VVVVVVVVbbbbbbbbbbbbFFFFFF&&"
+"==FFFFCCCCCCCCbbbbbbbbbbbbbbbb@@@@@@@@@@@@@@@@@@$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@VVVVVVVVVVVVbbbbbbbbbbbbFFFFFF&&"
+"==FFFFCCCCCCCCbbbbbbbbbbbbbbbb@@@@@@@@@@@@@@@@@@$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@VVVVVVVVVVVVbbbbbbbbbbbbFFFFFF&&"
+"&&FFGGVVVVCCCCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnCCCCCCCCbbbbbbbbbbbbbbbbbbbbFFFFFF&&"
+"&&FFGGVVVVCCCCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnCCCCCCCCbbbbbbbbbbbbbbbbbbbbFFFFFF&&"
+"&&FFGGVVVVCCCCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnCCCCCCCCbbbbbbbbbbbbbbbbbbbbFFFFFF&&"
+"&&FFGGVVVVCCCCbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnCCCCCCCCbbbbbbbbbbbbbbbbbbbbFFFFFF&&"
+"OO55ssGGGGmmmmMMMMbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnMMMMnnnnnnnnnnnnnnnnbbbbbbbbDDDD555555OO"
+"OO55ssGGGGmmmmMMMMbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnMMMMnnnnnnnnnnnnnnnnbbbbbbbbDDDD555555OO"
+"OO55ppiiiiGGGGMMMMbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbFFFF5555555555OO"
+"OO55ppiiiiGGGGMMMMbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbFFFF5555555555OO"
+"OO55ppiiiiGGGGMMMMbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbFFFF5555555555OO"
+"OO55ppiiiiGGGGMMMMbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnbbbbFFFF5555555555OO"
+"OO55tttttthhhhGGGGFFFFFFFFFFFFFFFFDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAAAAAASSSSSSSSSSSSSSSSSSSSDDDDDDDDDDDDDDDDFFFF44445555555555OO"
+"OO55tttttthhhhGGGGFFFFFFFFFFFFFFFFDDDDDDDDDDDDAAAAAAAAAAAAAAAAAAAAAAAAAASSSSSSSSSSSSSSSSSSSSDDDDDDDDDDDDDDDDFFFF44445555555555OO"
+"OO33rrttrrAAAA8888rrrrrrrrrrrrrrrrrrrr888800008888000000000088880000yyyyppppaaaayyyy0000888888888888888888888888jjdd3333333333OO"
+"OO33rrttrrAAAA8888rrrrrrrrrrrrrrrrrrrr888800008888000000000088880000yyyyppppaaaayyyy0000888888888888888888888888jjdd3333333333OO"
+"OO33ttmmBB88888888rrrrrrrr888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888jjjj333333OO"
+"OO33ttmmBB88888888rrrrrrrr888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888jjjj333333OO"
+"OO55ttmmBB88888888rrrrrrrr888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888jjjj333355OO"
+"OO55ttmmBB88888888rrrrrrrr888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888jjjj333355OO"
+"..jjxx888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888jjjjjj.."
+"..jjxx888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888jjjjjj.."
+"..xxxx8888888877887777888888888888888888888888888888888888888888888888888888888888888888888888888888qqqqqqqq888888887777jjjjxx.."
+"..xxxx8888888877887777888888888888888888888888888888888888888888888888888888888888888888888888888888qqqqqqqq888888887777jjjjxx.."
+"..xxxx8888888888887777888888888888888888888888888888888888888888888888888888888888888888888888888888qqqqqqqq888888887777xxjjxx.."
+"..xxxx8888888888887777888888888888888888888888888888888888888888888888888888888888888888888888888888qqqqqqqq888888887777xxjjxx.."
+"..aadd777777777777777777888888############OOOOOOOOOOOOOOooooOOOOOOOOOOOOOOOOOOOOooooooooooooOOOOqqqqqqqqqqqq888888777777aaaaaa.."
+"..aadd777777777777777777888888############OOOOOOOOOOOOOOooooOOOOOOOOOOOOOOOOOOOOooooooooooooOOOOqqqqqqqqqqqq888888777777aaaaaa.."
+"..rraa77777777777788777777####>>>>>>>>3333222233333333333333333333333333333333333333333333333333####qq00qqqq888877777777rrrrrr.."
+"..rraa77777777777788777777####>>>>>>>>3333222233333333333333333333333333333333333333333333333333####qq00qqqq888877777777rrrrrr.."
+"..rryy7777777777777777oooo>>>>>>>>333322223333333333333333333333333333333333333333333333333333333333####0000777777777777rrrrrr.."
+"..rryy7777777777777777oooo>>>>>>>>333322223333333333333333333333333333333333333333333333333333333333####0000777777777777rrrrrr.."
+"..qqyy7777777777777777oooo>>>>>>>>333322223333333333333333333333333333333333333333333333333333333333####0000777777777777rrrrrr.."
+"..qqyy7777777777777777oooo>>>>>>>>333322223333333333333333333333333333333333333333333333333333333333####0000777777777777rrrrrr.."
+"  qqrr7777777777777777oooo>>>>2222333333333333333333333333333333333333333333333333333333333333333333####7777777777777777qqqqrr.."
+"  qqrr7777777777777777oooo>>>>2222333333333333333333333333333333333333333333333333333333333333333333####7777777777777777qqqqrr.."
+"..qqrr7777777777777777oooo,,,,2222333333333333333333333333333333333333333333222222223333333333333333OOOO7777777777777777qqqqrr.."
+"..qqrr7777777777777777oooo,,,,2222333333333333333333333333333333333333333333222222223333333333333333OOOO7777777777777777qqqqrr.."
+"..qqrr7777777777777777oooo,,,,2222333333333333333322332233333333333333333333222222223333333333333333OOOO7777777777777777qqqqrr.."
+"..qqrr7777777777777777oooo,,,,2222333333333333333322332233333333333333333333222222223333333333333333OOOO7777777777777777qqqqrr.."
+"..qqrr6677777777777777####11112222222222223333222233333333333333333333331111222222222222333333332222OOOO7777777777777777rrrrrr.."
+"..qqrr6677777777777777####11112222222222223333222233333333333333333333331111222222222222333333332222OOOO7777777777777777rrrrrr.."
+"..qqrr6666666644444444####<<<<<<<<<<<<22222222222222222222222222111111111111111111111111111122221111OOOO7777777744447777qqrrqq.."
+"..qqrr6666666644444444####<<<<<<<<<<<<22222222222222222222222222111111111111111111111111111122221111OOOO7777777744447777qqrrqq.."
+"..qqqq6666666666664444OOOO<<<<<<<<<<<<22222222222222222222222222111111111111111111111111111122222211OOOO7777444444444444qqqqqq.."
+"..qqqq6666666666664444OOOO<<<<<<<<<<<<22222222222222222222222222111111111111111111111111111122222211OOOO7777444444444444qqqqqq.."
+"..qqqq6666666666664444OOOO<<<<<<<<<<<<22222222222222222222222222111111111111111111111111111122222222OOOO7777777744444444qqqqqq.."
+"..qqqq6666666666664444OOOO<<<<<<<<<<<<22222222222222222222222222111111111111111111111111111122222222OOOO7777777744444444qqqqqq.."
+"..rr006666666666666666oooo11<<<<<<<<<<11112222222222222222222222111111111111111111111111111111111111OOOO6666666677774444qqqqqq.."
+"..rr006666666666666666oooo11<<<<<<<<<<11112222222222222222222222111111111111111111111111111111111111OOOO6666666677774444qqqqqq.."
+"..qq006644666633333333oooo,,,,,,,,<<<<11111111111122222222221111111111111111<<<<<<<<<<<<<<<<<<<<<<<<oooo6666666666666666qqqqqq.."
+"..qq006644666633333333oooo,,,,,,,,<<<<11111111111122222222221111111111111111<<<<<<<<<<<<<<<<<<<<<<<<oooo6666666666666666qqqqqq.."
+"..qq004444666633333333oooo,,,,,,,,<<<<11111111111122222222221111111111111111<<<<<<<<<<<<<<<<<<<<<<<<oooo3366666666666666qqqqqq.."
+"..qq004444666633333333oooo,,,,,,,,<<<<11111111111122222222221111111111111111<<<<<<<<<<<<<<<<<<<<<<<<oooo3366666666666666qqqqqq.."
+"..qq007777333333333333OOOO,,,,,,,,,,,,,,,,11111111111111111122111111<<<<1111<<<<<<<<<<<<<<<<<<<<<<<<OOOO3333333333336666qqqqrr.."
+"..qq007777333333333333OOOO,,,,,,,,,,,,,,,,11111111111111111122111111<<<<1111<<<<<<<<<<<<<<<<<<<<<<<<OOOO3333333333336666qqqqrr.."
+"..qq0077773333333333338888####,,,,,,,,,,,,1111111111111111111111,,,,,,,,<<<<<<<<<<<<<<<<,,,,<<<<%%%%77773333333333333333qqqqqq.."
+"..qq0077773333333333338888####,,,,,,,,,,,,1111111111111111111111,,,,,,,,<<<<<<<<<<<<<<<<,,,,<<<<%%%%77773333333333333333qqqqqq.."
+"  qq8877773333333333333333ttee####ooooooooooXXXXooooooooooooXXXXooooooooooooooooXXXXXXXXoooooooo7777333333333333333333330000qq.."
+"  qq8877773333333333333333ttee####ooooooooooXXXXooooooooooooXXXXooooooooooooooooXXXXXXXXoooooooo7777333333333333333333330000qq.."
+"  qq8877773333333333333333ttee####ooooooooooooooooooooooooooXXXXooooooooooooooooXXXXXXXXoooooooo7777333333333333333333330000qq.."
+"  qq8877773333333333333333ttee####ooooooooooooooooooooooooooXXXXooooooooooooooooXXXXXXXXoooooooo7777333333333333333333330000qq.."
+"  qq8877777777333333333333333388qqqqqqqq888888qqqqqqqqqq888888qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3333333333333333333333330000qq.."
+"  qq8877777777333333333333333388qqqqqqqq888888qqqqqqqqqq888888qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3333333333333333333333330000qq.."
+"  qq887777777777777777333333332233333333332233333377777777777777777777777777777777773333333333333333333333333333333333330000qq.."
+"  qq887777777777777777333333332233333333332233333377777777777777777777777777777777773333333333333333333333333333333333330000qq.."
+"  8833337777777777777733333333332233333322223333222233333322333322223333777777777777333333333333333333333333333333337777333388  "
+"  8833337777777777777733333333332233333322223333222233333322333322223333777777777777333333333333333333333333333333337777333388  "
+"  8833337777777777777733333333332233333333333333222233333333333322223333777777777777333333333333333333333333333333337777333388  "
+"  8833337777777777777733333333332233333333333333222233333333333322223333777777777777333333333333333333333333333333337777333388  "
+"  8833333333777777333333333333332222333333333333222233333333333322223333333333333333333333333333333333333333333377773333333388  "
+"  8833333333777777333333333333332222333333333333222233333333333322223333333333333333333333333333333333333333333377773333333388  "
+"  8833333333333377333333333322222222333333333333222233333333333322223333333333333333333333333333333333333333777733333333333388  "
+"  8833333333333377333333333322222222333333333333222233333333333322223333333333333333333333333333333333333333777733333333333388  "
+"  8888888888888888772233333333222233333333333333223333333333333322333333333333333333333333333333333333333333778888888888888888  "
+"  8888888888888888772233333333222233333333333333223333333333333322333333333333333333333333333333333333333333778888888888888888  "
+"                                                                                ..............................      ..          "
+"                                                                                ..............................      ..          "
 };

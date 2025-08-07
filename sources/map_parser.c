@@ -27,7 +27,7 @@ static bool	check_and_set_measurements(t_map *map, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error:\n%s named \"%s\"\n", strerror(errno), filename);
+		ft_printf("Error\n%s named \"%s\"\n", strerror(errno), filename);
 		exit(errno);
 	}
 	row = get_next_line(fd);
