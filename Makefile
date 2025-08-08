@@ -2,7 +2,7 @@
 #    EXTERNAL INCLUDES     #
 # ──────────────────────── #
 include libraries/mk.var.export/Makefile
-include LIBFT_EXTENSIBLE/mk.var.export/Makefile
+include libft/mk.var.export/Makefile
 
 # ──────────────────────── #
 #      PROJECT CONFIG      #
@@ -19,7 +19,7 @@ MKDIR      = mkdir -p
 BUILD_DIR  = build
 SRCS_DIR   = sources
 BIN_DIR    = bin
-LIBFT_PATH = LIBFT_EXTENSIBLE
+LIBFT_PATH = libft
 MLX_PATH   = minilibx-linux
 
 # ──────────────────────── #
