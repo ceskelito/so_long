@@ -34,12 +34,9 @@ SRCS       = $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 #     EXTERNAL LIBRARIES   #
 # ──────────────────────── #
 MLX_LIB    = $(MLX_PATH)/libmlx.a
-LIBRARIES  = $(MLXD_LIB) \
-             $(COLORS_LIB) \
-             $(LIBFT_PATH)/libft.a \
-LIBRARIES_OBJS = $(MLXD_OBJS) \
-				 $(COLORS_OBJS) \
-				 $(LIBFT_PATH)/$(LIBFT_OBJS)
+LIBRARIES  = $(MLXD_NAME) \
+             $(COLORS_NAME) \
+             $(LIBFT_PATH)/libft.a
 
 # ──────────────────────── #
 #      INCLUDE & LINK      #
@@ -69,7 +66,7 @@ $(BUILD_DIR)/%.o: $(SRCS_DIR)/%.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
 	@printf "$(GREEN)Compiling $(BLUE)$<$(RESET)\n"
 
-$(NAME): $(OBJS) $(LIBRARIES_OBJS) | $(BIN_DIR)
+$(NAME): $(OBJS) $(LIBRARIES) | $(BIN_DIR)
 	@if [ ! -f "$(MLX_LIB)" ]; then \
 		echo "$(RED)\nNOTE: The minilibx-linux library is not compiled, and is necessary in order to link $(NAME).\n$(RESET)"; \
 		echo "$(BLUE)Please compile it manually by running $(GREEN)'make -C minilibx-linux'$(BLUE),"; \
@@ -87,16 +84,17 @@ $(BIN_DIR) $(BUILD_DIR):
 # ──────────────────────── #
 #    LIBRARY COMPILATION   #
 # ──────────────────────── #
+
 # MLX Data Library
-$(MLXD_LIB): $(MLXD_OBJS)
+$(MLXD_NAME): $(MLXD_OBJS)
 
 $(MLXD_OBJS): $(MLXD_SRCS)
 	$(MAKE) -C $(MLXD_PATH)
 
 # Colors Library
-$(COLORS_LIB): $(COLORS_OBJS)
+$(COLORS_NAME): $(COLORS_OBJS) 
 
-$(COLORS_OBJS): $(COLORS_SRCS)
+$(COLORS_OBJS):$(COLORS_SRCS)
 	$(MAKE) -C $(COLORS_PATH)
 
 # Libft Library
