@@ -37,6 +37,9 @@ MLX_LIB    = $(MLX_PATH)/libmlx.a
 LIBRARIES  = $(MLXD_LIB) \
              $(COLORS_LIB) \
              $(LIBFT_PATH)/libft.a \
+LIBRARIES_OBJS = $(MLXD_OBJS) \
+				 $(COLORS_OBJS) \
+				 $(LIBFT_PATH)/$(LIBFT_OBJS)
 
 # ──────────────────────── #
 #      INCLUDE & LINK      #
@@ -66,9 +69,17 @@ $(BUILD_DIR)/%.o: $(SRCS_DIR)/%.c | $(BUILD_DIR)
 	@$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
 	@printf "$(GREEN)Compiling $(BLUE)$<$(RESET)\n"
 
-$(NAME): $(OBJS) $(LIBRARIES) check_mlx | $(BIN_DIR)
+$(NAME): $(OBJS) $(LIBRARIES_OBJS) | $(BIN_DIR)
+	@if [ ! -f "$(MLX_LIB)" ]; then \
+		echo "$(RED)\nNOTE: The minilibx-linux library is not compiled, and is necessary in order to link $(NAME).\n$(RESET)"; \
+		echo "$(BLUE)Please compile it manually by running $(GREEN)'make -C minilibx-linux'$(BLUE),"; \
+		echo "or running $(GREEN)'make'$(BLUE) in the $(GREEN)minilibx$(BLUE) directory.$(RESET)\n"; \
+		exit 1; \
+	else \
+		printf "$(GREEN)\n- Minilibx-linux library is compiled yet. -\n\n$(RESET)"; \
+	fi
 	@$(CC) $(OBJS) $(LIB_PATHS) $(LIB_NAMES) -no-pie -o $(NAME)
-	@printf "$(GREEN)Linking $(BLUE)$(NAME)$(RESET)\n"
+	@printf "$(GREEN)Linking $(BLUE)$(NAME)$(RESET)\n"	
 
 $(BIN_DIR) $(BUILD_DIR):
 	$(MKDIR) $@
@@ -93,20 +104,6 @@ $(LIBFT_PATH)/libft.a: $(LIBFT_OBJS)
 
 $(LIBFT_OBJS): $(LIBFT_SRCS)
 	$(MAKE) -C $(LIBFT_PATH)
-
-
-# ──────────────────────── #
-#    MLX LIBRARY CHECK     #	
-# ──────────────────────── #
-
-check_mlx: $(MLX_LIB)
-	@if [ ! -f "$(MLX_LIB)" ]; then \
-		echo "$(RED)\nError: The minilibx-linux library is not compiled.$(RESET)"; \
-		echo "$(BLUE)Please compile it manually by running $(GREEN)'make -C minilibx-linux'$(BLUE),"; \
-		echo "or running $(GREEN)'make'$(BLUE) in the $(GREEN)minilibx$(BLUE) directory.$(RESET)"; \
-		exit 1; \
-	fi
-	@printf "$(GREEN)\n- Minilibx-linux library is compiled. -\n\n$(RESET)"
 
 # ──────────────────────── #
 #      CLEANING RULES      #
@@ -142,4 +139,4 @@ deepfclean: fclean
 deepre: deepfclean all
 
 # ──────────────────────── #
-.PHONY: all re clean fclean deepre deepclean deepfclean check_mlx
+.PHONY: all re clean fclean deepre deepclean deepfclean
