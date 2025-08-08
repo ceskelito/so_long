@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/08 11:52:09 by ceskelito        ###   ########.fr       */
+/*   Updated: 2025/08/08 16:11:09 by rceschel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ static void	floodfill(t_grid *g, int x, int y)
 		return ;
 	if (*actual == T_WALL || *actual == T_VISITED || *actual == T_VOID)
 		return ;
-	*actual = T_VISITED;
 	if (*actual == T_EXIT)
+	{
+		*actual = T_VISITED;
 		return ;
+	}
+	*actual = T_VISITED;
 	floodfill(g, x + 1, y);
 	floodfill(g, x - 1, y);
 	floodfill(g, x, y + 1);
