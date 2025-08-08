@@ -6,7 +6,7 @@
 /*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:48:10 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/07 18:43:47 by ceskelito        ###   ########.fr       */
+/*   Updated: 2025/08/08 11:48:24 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	handle_keypress(int keycode, t_map *map)
 		win = move_player(map, 0, 1);
 	if (win)
 	{
-		ft_printf("Error:\nToo skilled player has won the game\n");
+		ft_printf("Moves count: %i\n", map->player.moves + 1);
+		ft_printf("Error\nToo skilled player has won the game\n");
 		close_window(map);
 	}
 	return (0);
@@ -77,12 +78,12 @@ static void	check_args(int ac, char **av)
 {
 	if (ac != 2 || !av[1])
 	{
-		ft_printf("Arg Error: Invalid number of arguments, ");
+		ft_printf("Error\nInvalid number of arguments: ");
 		print_and_exit("give only the map's file path.\n", ARG_ERROR);
 	}
 	if (ft_strcmp(av[1] + (ft_strlen(av[1]) - ft_strlen(".ber")), ".ber") != 0)
 	{
-		ft_printf("Arg Error: Invalid file extension for the map's file, ");
+		ft_printf("Error\nInvalid file extension for the map's file: ");
 		print_and_exit("need to be '.ber'\n", ARG_ERROR);
 	}
 }
@@ -97,7 +98,7 @@ int	main(int ac, char **av)
 	data = data_init(NULL, map.width * ASSETS_SIZE, map.height * ASSETS_SIZE,
 			"so_long");
 	if (!data.mlx)
-		print_and_exit("MLX error: Faild to create mlx instance\n", MLX_ERROR);
+		print_and_exit("Error\nFailed to create mlx instance\n", MLX_ERROR);
 	map.data = &data;
 	if (!set_assets(data.mlx, map.asset))
 		close_window(&map);

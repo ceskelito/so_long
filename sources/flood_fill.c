@@ -6,7 +6,7 @@
 /*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 16:15:00 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/07 18:40:51 by ceskelito        ###   ########.fr       */
+/*   Updated: 2025/08/08 11:52:09 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,30 @@
 
 #define T_VISITED 99
 
+// I assume that the exit acts like a wall,
+// but anyway i need to mark it as visited
+// in order to check if is possible reach it.
 static void	floodfill(t_grid *g, int x, int y)
 {
+	int	*actual;
+
+	actual = &g->grid[y][x];
 	if (x < 0 || x >= g->width || y < 0 || y >= g->height)
 		return ;
-	if (g->grid[y][x] == T_WALL || g->grid[y][x] == T_VISITED
-		|| g->grid[y][x] == T_VOID)
+	if (*actual == T_WALL || *actual == T_VISITED || *actual == T_VOID)
 		return ;
-	g->grid[y][x] = T_VISITED;
+	*actual = T_VISITED;
+	if (*actual == T_EXIT)
+		return ;
 	floodfill(g, x + 1, y);
 	floodfill(g, x - 1, y);
 	floodfill(g, x, y + 1);
 	floodfill(g, x, y - 1);
 }
 
+// Once i filled the map whit T_VISITED,
+// if are still present collectibles or the exit tile,
+// it means they are not reachable, and the game will not start.
 static bool	map_is_completable(t_grid *g, int x, int y)
 {
 	int	i;
@@ -65,6 +75,8 @@ static void	free_grid(t_grid *g)
 	free(g->grid);
 }
 
+// I'll going to copy the map in order to modify it,
+// without repercussions.
 bool	flood_fill(t_map *map)
 {
 	int												i;

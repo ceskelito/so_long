@@ -23,7 +23,7 @@
 # define PATH_PLAYER_LEFT	"assets/player_left.xpm"
 # define PATH_PLAYER_RIGHT	"assets/player_right.xpm"
 # define PATH_ENEMY			"assets/tile-01.xpm"
-# define PATH_COLLECTIBLE	"assets/collectible-128.xpm"
+# define PATH_COLLECTIBLE	"assets/collectible.xpm"
 # define PATH_EXIT			"assets/exit.xpm"
 
 # define T_PLAYER_STD T_PLAYER_DOWN

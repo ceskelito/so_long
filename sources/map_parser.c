@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rceschel <rceschel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ceskelito <ceskelito@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 12:33:28 by rceschel          #+#    #+#             */
-/*   Updated: 2025/08/05 11:56:34 by rceschel         ###   ########.fr       */
+/*   Updated: 2025/08/08 11:31:10 by ceskelito        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	**extract_map(char *filename, int height)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error:\n%s named \"%s\"\n", strerror(errno), filename);
+		ft_printf("Error\n%s named \"%s\"\n", strerror(errno), filename);
 		exit(errno);
 	}
 	grid = ft_calloc(height + 1, sizeof(char *));
